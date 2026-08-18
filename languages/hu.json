@@ -1,0 +1,252 @@
+{
+    "benches": {
+        "round bench": {
+            "title": "Kerek pad",
+            "code": "IC06"
+        },
+        "bench": {
+            "title": "Pad",
+            "code": "BL01"
+        },
+        "bench 2": {
+            "title": "Pad",
+            "code": "IC01"
+        },
+        "bench 3": {
+            "title": "Pad",
+            "code": "ST01"
+        },
+        "bench 4": {
+            "title": "Pad",
+            "code": "MI01"
+        },
+        "bench 5": {
+            "title": "Pad",
+            "code": "MI02"
+        },
+        "bench 6": {
+            "title": "Pad",
+            "code": "IC02"
+        },
+        "bench with flowers": {
+            "title": "Pad virágládával",
+            "code": "-"
+        },
+        "bench with bike rack": {
+            "title": "Pad kerékpártartóval",
+            "code": "-"
+        },
+        "bench 7": {
+            "title": "Pad",
+            "code": "-"
+        },
+        "garbage bin": {
+            "title": "Szemetes",
+            "code": "IB01"
+        },
+        "garbage bin 2": {
+            "title": "Szemetes",
+            "code": "-"
+        },
+        "garbage bin 3": {
+            "title": "Szemetes",
+            "code": "-"
+        },
+        "garbage bin 4": {
+            "title": "Szemetes",
+            "code": "MB01"
+        },
+        "flower pot": {
+            "title": "Faragott virágláda",
+            "code": "LJ03"
+        },
+        "flower pot 2": {
+            "title": "Virágláda",
+            "code": "LJ01"
+        },
+        "flower pot 3": {
+            "title": "Faragott virágláda",
+            "code": "LJ02"
+        },
+        "well with a water wheel": {
+            "title": "Kerekeskút",
+            "code": "KK01"
+        },
+        "sun lounger": {
+            "title": "Kerti napozóágy",
+            "code": "SU4"
+        },
+        "round table with benches": {
+            "title": "Kerek pad és asztal",
+            "code": "IC60"
+        },
+        "table": {
+            "title": "Asztal",
+            "code": "ICM01"
+        },
+        "chess table with two benches": {
+            "title": "Sakkasztal két paddal",
+            "code": "SA01"
+        },
+        "bus station": {
+            "title": "Buszmegálló",
+            "code": "BM02"
+        },
+        "bus station 2": {
+            "title": "Buszmegálló",
+            "code": "BM01"
+        },
+        "bicycle rack": {
+            "title": "Kerékpártartó",
+            "code": "BT01"
+        },
+        "solid wood fence": {
+            "title": "Tömörfa kerítés",
+            "code": "-"
+        },
+        "Info station": {
+            "title": "Információs tábla",
+            "code": "-"
+        },
+        "Secler gate": {
+            "title": "Székelykapu",
+            "code": "SZ01"
+        },
+        "Octagonal pavilon": {
+            "title": "Nyolcszögletű pavilon",
+            "code": "PAC08"
+        },
+        "Garden swing": {
+            "title": "Mérleghinta",
+            "code": "LP01"
+        },
+        "Garden swing 2": {
+            "title": "Mérleghinta",
+            "code": "LP02"
+        },
+        "Swing": {
+            "title": "Hinta",
+            "code": "-"
+        },
+        "Big swing": {
+            "title": "Nagy hinta",
+            "code": "-"
+        },
+        "Child swing": {
+            "title": "Gyermekhinta",
+            "code": "-"
+        },
+        "Hexagonal sandbox": {
+            "title": "Hatszögletű homokozó",
+            "code": "HO06"
+        },
+        "Hexagonal climbing frame": {
+            "title": "Hatszögletű mászóka",
+            "code": "MF01"
+        },
+        "Wooden ship": {
+            "title": "Fahajó",
+            "code": "EK01"
+        },
+        "Balancing snake": {
+            "title": "Egyensúlyozó kígyó",
+            "code": "EK01"
+        },
+        "Labirynth game for developing senzomotor skills": {
+            "title": "Szenzomotoros fejlesztő labirintusjáték",
+            "code": "EL01"
+        },
+        "Spring rocker airplane": {
+            "title": "Rugós repülő",
+            "code": "AP01ARC"
+        },
+        "Airplane": {
+            "title": "Repülő",
+            "code": "AP01"
+        },
+        "Mini castle playground": {
+            "title": "Mini vár típusú játszókomplexum",
+            "code": "MINI01"
+        },
+        "Double solid wood swing set with tower-style slide": {
+            "title": "Dupla tömörfa hintaállvány torony típusú csúszdával",
+            "code": "TW01"
+        },
+        "Double solid wood swing set with slide": {
+            "title": "Dupla tömörfa hintaállvány csúszdával",
+            "code": "TW03"
+        },
+        "Caribbean ship": {
+            "title": "Karibi hajó",
+            "code": "-"
+        },
+        "Rustic styled Double solid wood swing": {
+            "title": "Rusztikus dupla tömörfa hinta",
+            "code": "-"
+        },
+        "Carousel": {
+            "title": "Körhinta",
+            "code": "-"
+        },
+        "Rustic Solid Wood Swing with Roof": {
+            "title": "Rusztikus tömörfa hinta tetővel",
+            "code": "-"
+        },
+        "Solid wood bell tower": {
+            "title": "Tömörfa harangláb",
+            "code": "-"
+        }
+    },
+    "ui": {
+        "catalogWord": "KATALÓGUS",
+        "year": "2026",
+        "heroLead": "Kézzel készített tömörfa kerti bútorok, virágládák, pavilonok és játszótéri szerkezetek — tartósra építve, az Ön által választott színben.",
+        "warrantyKicker": "Garancia és feltételek",
+        "warrantyTitle": "Tömörfából készült, 5 év garanciával",
+        "vat": "Az árak nem tartalmazzák az áfát.",
+        "galleryTitle": "Válogatott megvalósítások",
+        "itemsSuffix": "termék",
+        "requestQuote": "Kérjen árajánlatot!",
+        "footerNote": "Az árak nem tartalmazzák az áfát · Az árak élőben, az ártáblázatból frissülnek.",
+        "badgeLive": "Élő árak ·",
+        "badgeSaved": "mentve",
+        "badgeBuiltin": "beépített árak",
+        "badgeReading": "beolvasás…",
+        "langName": "Magyar",
+        "terms": [
+            "Tömörfából készült termékeinkre 5 év garanciát vállalunk, a gyártás dátumától számítva. A vásárolt termékek garanciája a vásárláskor hatályos jogszabályoknak megfelelően érvényes. A garancia csak a gyártási hibákból vagy rejtett anyaghibákból eredő hibákra terjed ki, és érvényét veszti, ha a termékeket nem rendeltetésszerűen vagy céljukkal ellentétesen használják.",
+            "A vásárló tudomásul veszi, hogy a természetes anyagokból, például tömörfából vagy tömörfa rétegelt lemezből készült termékek textúrája és a különböző felületkezelési eljárásokkal elért árnyalatai eltérőek lehetnek. Az ilyen eltérések az anyag természetes tulajdonságainak minősülnek, és nem jelentenek minőségi hibát.",
+            "A vásárló kérésére a tömörfa fenyőfával helyettesíthető; ebben az esetben azonban a garancia időtartama 1 évre csökken. Az ilyen kérésekhez egyedi árajánlat szükséges.",
+            "Fizetési feltételek: 50% előleg a megrendeléskor, a fennmaradó összeg a szállításkor fizetendő, kivéve, ha a szerződés másként rendelkezik.",
+            "Kérjük, kérjen egyedi árajánlatot a berakodás, szállítás, összeszerelés és telepítés feltételeiről és költségeiről. Ha további információra van szüksége, örömmel állunk rendelkezésére. Ne habozzon kapcsolatba lépni velünk."
+        ]
+    },
+    "sections": {
+        "Benches & Seating": "Padok és ülőhelyek",
+        "Waste Baskets": "Szemetesek",
+        "Planters, Boxes & Wells": "Virágládák, ládák és kutak",
+        "Tables & Sets": "Asztalok és szettek",
+        "Shelters & Structures": "Fedett építmények és szerkezetek",
+        "Fencing & Signage": "Kerítések és táblák",
+        "Playground — Swings & Play": "Játszótér — Hinták és játék",
+        "Large Play Structures": "Nagy játszótéri szerkezetek"
+    },
+    "descriptions": {
+        "Wood (oak, acacia) and metal with special paint. Available in selected colors.": "Fa (tölgy, akác) és fém különleges festéssel. Válogatott színekben kapható.",
+        "Wood (oak, acacia) and metal treated with a special protective coating. Available in various colors upon request.": "Fa (tölgy, akác) és fém speciális védőbevonattal kezelve. Igény szerint különböző színekben kapható.",
+        "Wood (oak, acacia) and metal with a special coating. Available in different colors upon request.": "Fa (tölgy, akác) és fém speciális bevonattal. Igény szerint különböző színekben kapható.",
+        "Wood (oak, acacia) and metal treated with special paint. Available in selected colors.": "Fa (tölgy, akác) és fém különleges festékkel kezelve. Válogatott színekben kapható.",
+        "Wood (oak, acacia), treated with special paint. Carved decoration. Available in selected colors.": "Fa (tölgy, akác), különleges festékkel kezelve. Faragott díszítés. Válogatott színekben kapható.",
+        "Wood (oak, acacia) and carved stone. Available in selected colors.": "Fa (tölgy, akác) és faragott kő. Válogatott színekben kapható.",
+        "Wood (oak, acacia), treated with special paint. Carved motifs. Available in selected colors.": "Fa (tölgy, akác), különleges festékkel kezelve. Faragott motívumok. Válogatott színekben kapható.",
+        "Wood (oak, acacia) and metal with special paint. Carved motifs. Available in selected colors.": "Fa (tölgy, akác) és fém különleges festéssel. Faragott motívumok. Válogatott színekben kapható.",
+        "Wood (oak, acacia), special paint finish. Carved motifs. Available in selected colors.": "Fa (tölgy, akác), különleges festék felülettel. Faragott motívumok. Válogatott színekben kapható.",
+        "Pine wood, treated with special paint. Available in selected colors. Roof on request (quote). Table and chairs on request (quote).": "Fenyőfa, különleges festékkel kezelve. Válogatott színekben kapható. Tető igény szerint (ajánlat). Asztal és székek igény szerint (ajánlat).",
+        "Carved stone, metal.": "Faragott kő, fém.",
+        "Wood (oak, acacia) and metal with special paint. Available in selected colors. Recommended for private gardens.": "Fa (tölgy, akác) és fém különleges festéssel. Válogatott színekben kapható. Magánkertekbe ajánlott.",
+        "Wood and metal with special paint. Available in selected colors.": "Fa és fém különleges festéssel. Válogatott színekben kapható."
+    },
+    "dims": {
+        "Length 160 · Width 60 · Height 80 cm": "Hossz 160 · Szélesség 60 · Magasság 80 cm"
+    }
+}

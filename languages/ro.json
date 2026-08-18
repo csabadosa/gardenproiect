@@ -1,0 +1,252 @@
+{
+    "benches": {
+        "round bench": {
+            "title": "bancă rotundă",
+            "code": "IC06"
+        },
+        "bench": {
+            "title": "Bancă",
+            "code": "BL01"
+        },
+        "bench 2": {
+            "title": "Bancă",
+            "code": "IC01"
+        },
+        "bench 3": {
+            "title": "Bancă",
+            "code": "ST01"
+        },
+        "bench 4": {
+            "title": "Bancă",
+            "code": "MI01"
+        },
+        "bench 5": {
+            "title": "Bancă",
+            "code": "MI02"
+        },
+        "bench 6": {
+            "title": "Bancă",
+            "code": "IC02"
+        },
+        "bench with flowers": {
+            "title": "bancă cu jardeniere",
+            "code": "-"
+        },
+        "bench with bike rack": {
+            "title": "bancă cu suport pentru biciclete",
+            "code": "-"
+        },
+        "bench 7": {
+            "title": "Bancă",
+            "code": "-"
+        },
+        "garbage bin": {
+            "title": "coș de gunoi",
+            "code": "IB01"
+        },
+        "garbage bin 2": {
+            "title": "Coș de gunoi",
+            "code": "-"
+        },
+        "garbage bin 3": {
+            "title": "Coș de gunoi",
+            "code": "-"
+        },
+        "garbage bin 4": {
+            "title": "Coș de gunoi",
+            "code": "MB01"
+        },
+        "flower pot": {
+            "title": "Jardinieră sculptată",
+            "code": "LJ03"
+        },
+        "flower pot 2": {
+            "title": "Jardinieră",
+            "code": "LJ01"
+        },
+        "flower pot 3": {
+            "title": "Jardinieră sculptată",
+            "code": "LJ02"
+        },
+        "well with a water wheel": {
+            "title": "Fântână roată",
+            "code": "KK01"
+        },
+        "sun lounger": {
+            "title": "Șezlong grădină",
+            "code": "SU4"
+        },
+        "round table with benches": {
+            "title": "Bancă și masă rotundă",
+            "code": "IC60"
+        },
+        "table": {
+            "title": "Masă",
+            "code": "ICM01"
+        },
+        "chess table with two benches": {
+            "title": "Masă de șah cu două bănci",
+            "code": "SA01"
+        },
+        "bus station": {
+            "title": "Stație de autobuz",
+            "code": "BM02"
+        },
+        "bus station 2": {
+            "title": "Stație de autobuz",
+            "code": "BM01"
+        },
+        "bicycle rack": {
+            "title": "Suport de bicicletă",
+            "code": "BT01"
+        },
+        "solid wood fence": {
+            "title": "Gard din lemn masiv",
+            "code": "-"
+        },
+        "Info station": {
+            "title": "Panou informative",
+            "code": "-"
+        },
+        "Secler gate": {
+            "title": "Poartă Secuiască",
+            "code": "SZ01"
+        },
+        "Octagonal pavilon": {
+            "title": "Pavilion octogonal",
+            "code": "PAC08"
+        },
+        "Garden swing": {
+            "title": "Balansoar",
+            "code": "LP01"
+        },
+        "Garden swing 2": {
+            "title": "Balansoar",
+            "code": "LP02"
+        },
+        "Swing": {
+            "title": "Leagăn",
+            "code": "-"
+        },
+        "Big swing": {
+            "title": "Leagăn mare",
+            "code": "-"
+        },
+        "Child swing": {
+            "title": "Leagăn copii",
+            "code": "-"
+        },
+        "Hexagonal sandbox": {
+            "title": "Nisipar hexagonal",
+            "code": "HO06"
+        },
+        "Hexagonal climbing frame": {
+            "title": "Cățărare hexagonală",
+            "code": "MF01"
+        },
+        "Wooden ship": {
+            "title": "Vaporas",
+            "code": "EK01"
+        },
+        "Balancing snake": {
+            "title": "Șarpe pentru echilibristica",
+            "code": "EK01"
+        },
+        "Labirynth game for developing senzomotor skills": {
+            "title": "Joc labirint pentru devoltare senzomotorică",
+            "code": "EL01"
+        },
+        "Spring rocker airplane": {
+            "title": "Avion cu arc",
+            "code": "AP01ARC"
+        },
+        "Airplane": {
+            "title": "Avion",
+            "code": "AP01"
+        },
+        "Mini castle playground": {
+            "title": "Mini complex de joacă tip cetate",
+            "code": "MINI01"
+        },
+        "Double solid wood swing set with tower-style slide": {
+            "title": "Leagăn dublu din lemn masiv cu tobogan tip turn",
+            "code": "TW01"
+        },
+        "Double solid wood swing set with slide": {
+            "title": "Leagăn dublu din lemn masiv cu tobogan",
+            "code": "TW03"
+        },
+        "Caribbean ship": {
+            "title": "Vapor Karibi",
+            "code": "-"
+        },
+        "Rustic styled Double solid wood swing": {
+            "title": "Leagăn dublu din lemn masiv tip rustic",
+            "code": "-"
+        },
+        "Carousel": {
+            "title": "Carusel",
+            "code": "-"
+        },
+        "Rustic Solid Wood Swing with Roof": {
+            "title": "Leagăn din lemn masiv tip rustic cu acoperiș",
+            "code": "-"
+        },
+        "Solid wood bell tower": {
+            "title": "Clopotință din lemn masiv",
+            "code": "-"
+        }
+    },
+    "ui": {
+        "catalogWord": "CATALOG",
+        "year": "2026",
+        "heroLead": "Mobilier de grădină din lemn masiv lucrat manual, jardiniere, foișoare și structuri de joacă — construite să reziste, finisate în culorile alese de dumneavoastră.",
+        "warrantyKicker": "Garanție și termeni",
+        "warrantyTitle": "Fabricat din lemn masiv, garantat 5 ani",
+        "vat": "Prețurile nu includ TVA.",
+        "galleryTitle": "Realizări selectate",
+        "itemsSuffix": "produse",
+        "requestQuote": "Vă rugăm cereți o ofertă!",
+        "footerNote": "Prețurile nu includ TVA · Prețurile sunt citite în timp real din foaia de prețuri.",
+        "badgeLive": "Prețuri live ·",
+        "badgeSaved": "actualizat",
+        "badgeBuiltin": "prețuri implicite",
+        "badgeReading": "se citește…",
+        "langName": "Română",
+        "terms": [
+            "Oferim o garanție de 5 ani pentru produsele din lemn masiv, calculată de la data fabricației. Garanția pentru produsele achiziționate este valabilă în conformitate cu legislația în vigoare la momentul achiziției. Garanția acoperă numai defectele rezultate din vicii de fabricație sau defecte ascunse ale materialului și își pierde valabilitatea dacă produsele sunt utilizate necorespunzător sau contrar destinației lor.",
+            "Clientul recunoaște că produsele fabricate din materiale naturale, precum lemnul masiv sau placajul din lemn masiv, pot varia ca textură și ca nuanțe obținute prin diferite procese de finisare. Aceste variații sunt considerate caracteristici naturale ale materialului și nu constituie defecte de calitate.",
+            "La cererea clientului, lemnul masiv poate fi înlocuit cu lemn de pin; totuși, în acest caz, perioada de garanție se reduce la 1 an. Pentru astfel de solicitări este necesară o ofertă personalizată.",
+            "Condiții de plată: 50% avans la comandă, restul sumei fiind plătibil la livrare, cu excepția cazului în care se specifică altfel în contract.",
+            "Vă rugăm să solicitați o ofertă personalizată privind condițiile și costurile de încărcare, transport, montaj și instalare. Dacă aveți nevoie de informații suplimentare, vă stăm cu plăcere la dispoziție. Nu ezitați să ne contactați."
+        ]
+    },
+    "sections": {
+        "Benches & Seating": "Bănci și șezut",
+        "Waste Baskets": "Coșuri de gunoi",
+        "Planters, Boxes & Wells": "Jardiniere, lăzi și fântâni",
+        "Tables & Sets": "Mese și seturi",
+        "Shelters & Structures": "Adăposturi și structuri",
+        "Fencing & Signage": "Garduri și panouri",
+        "Playground — Swings & Play": "Loc de joacă — Leagăne și joacă",
+        "Large Play Structures": "Structuri mari de joacă"
+    },
+    "descriptions": {
+        "Wood (oak, acacia) and metal with special paint. Available in selected colors.": "Lemn (stejar, salcâm) și metal cu vopsea specială. Disponibil în culori selectate.",
+        "Wood (oak, acacia) and metal treated with a special protective coating. Available in various colors upon request.": "Lemn (stejar, salcâm) și metal tratat cu un strat protector special. Disponibil în diverse culori la cerere.",
+        "Wood (oak, acacia) and metal with a special coating. Available in different colors upon request.": "Lemn (stejar, salcâm) și metal cu un strat special. Disponibil în diferite culori la cerere.",
+        "Wood (oak, acacia) and metal treated with special paint. Available in selected colors.": "Lemn (stejar, salcâm) și metal tratat cu vopsea specială. Disponibil în culori selectate.",
+        "Wood (oak, acacia), treated with special paint. Carved decoration. Available in selected colors.": "Lemn (stejar, salcâm), tratat cu vopsea specială. Decor sculptat. Disponibil în culori selectate.",
+        "Wood (oak, acacia) and carved stone. Available in selected colors.": "Lemn (stejar, salcâm) și piatră sculptată. Disponibil în culori selectate.",
+        "Wood (oak, acacia), treated with special paint. Carved motifs. Available in selected colors.": "Lemn (stejar, salcâm), tratat cu vopsea specială. Motive sculptate. Disponibil în culori selectate.",
+        "Wood (oak, acacia) and metal with special paint. Carved motifs. Available in selected colors.": "Lemn (stejar, salcâm) și metal cu vopsea specială. Motive sculptate. Disponibil în culori selectate.",
+        "Wood (oak, acacia), special paint finish. Carved motifs. Available in selected colors.": "Lemn (stejar, salcâm), finisaj cu vopsea specială. Motive sculptate. Disponibil în culori selectate.",
+        "Pine wood, treated with special paint. Available in selected colors. Roof on request (quote). Table and chairs on request (quote).": "Lemn de pin, tratat cu vopsea specială. Disponibil în culori selectate. Acoperiș la cerere (ofertă). Masă și scaune la cerere (ofertă).",
+        "Carved stone, metal.": "Piatră sculptată, metal.",
+        "Wood (oak, acacia) and metal with special paint. Available in selected colors. Recommended for private gardens.": "Lemn (stejar, salcâm) și metal cu vopsea specială. Disponibil în culori selectate. Recomandat pentru grădini private.",
+        "Wood and metal with special paint. Available in selected colors.": "Lemn și metal cu vopsea specială. Disponibil în culori selectate."
+    },
+    "dims": {
+        "Length 160 · Width 60 · Height 80 cm": "Lungime 160 · Lățime 60 · Înălțime 80 cm"
+    }
+}
