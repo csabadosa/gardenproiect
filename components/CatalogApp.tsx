@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { SECTIONS, CONTACT, GALLERY } from "@/lib/catalog.mjs";
 import { PricesProvider, LivePrice, LiveBadge, type PricesMap } from "@/components/prices-context";
 import { LangProvider, useT, FlagSwitcher } from "@/components/lang";
@@ -54,6 +55,18 @@ function Card({ p }: { p: Product }) {
 function CatalogInner() {
   const t = useT();
   const sections = SECTIONS as Section[];
+
+  // Ctrl+P: force any lazy product images to load so the printout isn't missing pictures.
+  useEffect(() => {
+    const eagerLoad = () => {
+      document.querySelectorAll<HTMLImageElement>('img[loading="lazy"]').forEach((img) => {
+        img.loading = "eager";
+        if (!img.complete && img.dataset.src) img.src = img.dataset.src;
+      });
+    };
+    window.addEventListener("beforeprint", eagerLoad);
+    return () => window.removeEventListener("beforeprint", eagerLoad);
+  }, []);
 
   return (
     <>

@@ -201,3 +201,99 @@ a { color: inherit; text-decoration: none; }
   .chip { font-size: 12.5px; padding: 8px 12px; }
   .hero-media .frame { aspect-ratio: 3/3.4; }
 }
+
+/* ---------------- Print / PDF (Ctrl+P) ---------------- */
+@media print {
+  /* A generous page margin so no image/card sits flush against the paper edge.
+     Note: the margin area is bare paper (it can't be colored cream); the
+     cream background fills everything inside it. */
+  @page { margin: 12mm; }
+
+  /* Comfortable inner gutter on top of the @page margin, so text and images
+     never hug the edge of the full-bleed colour bands (hero / terms / footer)
+     or the paper. Wider than the on-screen 24px so print gets real breathing room. */
+  .wrap { padding: 0 12mm !important; }
+
+  /* Render brand colors & product backgrounds instead of blank boxes.
+     (The dialog's "Background graphics" toggle still has the final say.) */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    background: var(--cream) !important;
+    overflow: visible !important;
+  }
+
+  /* Kill on-screen motion/shadows so nothing renders half-animated on paper */
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .card, .card:hover { transform: none !important; box-shadow: none !important; }
+  .card:hover .card-media img { transform: none !important; }
+
+  /* --- Hide interactive / screen-only chrome --- */
+  .topbar-right,          /* language flags + live-price badge */
+  .hero-leaf,
+  .section:has(.gallery)  /* the reference photo gallery — ink & page heavy */ {
+    display: none !important;
+  }
+
+  /* Top bar becomes a plain header, no sticky/blur */
+  .topbar {
+    position: static !important;
+    backdrop-filter: none !important;
+    background: var(--cream) !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  /* Tighten the cover so products start sooner */
+  .hero {
+    background: linear-gradient(180deg, var(--cream), var(--cream-2)) !important;
+    break-inside: avoid;
+  }
+  .hero-grid { padding: 20px 0 24px !important; gap: 28px !important; }
+  /* Nudge the cover content in from the left so the big title reads as
+     intentionally inset rather than jammed against the edge. */
+  .hero .wrap { padding-left: 16mm !important; }
+  .hero-title { font-size: 46px !important; }
+  /* Shorten the tall cover photo in print so the whole cover fits one page
+     (the 3/4.4 on-screen ratio would otherwise push the hero to page 2). */
+  .hero-media .frame { box-shadow: none !important; aspect-ratio: 3/3.2 !important; }
+
+  /* Warranty / terms band — keep the brand green, keep it together */
+  .terms { padding: 26px 0 !important; break-inside: avoid; }
+
+  /* Section headings stay attached to their grid */
+  .section { padding: 22px 0 6px !important; break-inside: auto; }
+  .section-head { break-after: avoid; margin-bottom: 16px !important; }
+
+  /* Product grid: keep 3 up, but never split a card across pages */
+  .grid { gap: 14px !important; }
+  .card {
+    break-inside: avoid;
+    border: 1px solid rgba(47, 107, 59, 0.28) !important;
+  }
+  .card-body { padding: 12px 14px 14px !important; }
+
+  /* Make sure the live price is legible in print */
+  .price, .price.quote { font-size: 14px !important; }
+  .price .flash { background: transparent !important; }
+
+  /* Lighten the footer so it isn't a full page of dark toner */
+  .footer {
+    background: transparent !important;
+    color: var(--ink) !important;
+    margin-top: 26px !important;
+    padding: 20px 0 0 !important;
+    border-top: 2px solid var(--green-deep) !important;
+    break-inside: avoid;
+  }
+  .footer .brand .wordmark b { color: var(--green-deep) !important; }
+  .footer .brand .wordmark span { color: var(--olive) !important; }
+  .footer-contact a, .footer-contact span { color: var(--ink) !important; }
+  .footer-contact svg { color: var(--green) !important; }
+  .footer-note { color: var(--muted) !important; border-top-color: var(--line) !important; }
+}
