@@ -97,8 +97,8 @@ const EXPORT_CSS = `
   table.pageframe > tfoot > tr > td { padding: 0 !important; border: 0 !important;
                                       background: var(--cream) !important; }
   /* The reserved cream band at the very top and bottom of each printed page.
-     Kept small (6mm) so more of each sheet is usable for cards. */
-  table.pageframe .pf-spacer { height: 6mm; }
+     Kept small (4mm) so more of each sheet is usable for cards. */
+  table.pageframe .pf-spacer { height: 4mm; }
 
   /* -------- COVER (page 1) -------- */
   /* Force the two-column cover layout: at A4 print width (~794px) the app's
@@ -146,7 +146,7 @@ const EXPORT_CSS = `
   /* Card fills its cell so all three in a row share one height. */
   table.pageframe tr.pf-row > td > .card { height: 100% !important; }
   table.pageframe tr.pf-head { break-inside: avoid !important; break-after: avoid !important; }
-  table.pageframe tr.pf-head > td { padding: 9px 5px 8px !important; border: 0 !important; }
+  table.pageframe tr.pf-head > td { padding: 6px 5px 5px !important; border: 0 !important; }
   table.pageframe > tbody > tr:first-child.pf-head > td { padding-top: 0 !important; }
   .section-head { margin-bottom: 0 !important; }
   /* Compact cards so THREE rows fit per A4 sheet (the default 4/3 photo left
@@ -154,8 +154,8 @@ const EXPORT_CSS = `
      photo, tighter body padding/leading, slimmer dividers and smaller inline
      icons shave enough off each row for a third to fit. */
   .card { padding: 2mm !important; }
-  .card-media { aspect-ratio: 4/2.3 !important; }
-  .card-body { padding: 6px 4px 0 !important; }
+  .card-media { aspect-ratio: 4/1.75 !important; }
+  .card-body { padding: 5px 4px 0 !important; }
   .card-name { font-size: 12.5px !important; line-height: 1.08 !important; }
   .card-code { font-size: 10px !important; margin-top: 1px !important; }
   .card-row { font-size: 10.5px !important; line-height: 1.28 !important; gap: 6px !important;
@@ -164,7 +164,7 @@ const EXPORT_CSS = `
                   margin-top: 1px !important; }
   .card-dims { font-size: 10px !important; padding-left: 18px !important; margin-top: 3px !important; }
   .card-dims svg { width: 13px !important; height: 13px !important; }
-  .rule { margin: 5px 0 !important; }
+  .rule { margin: 4px 0 !important; }
 
   /* ---- Uniform card zones -------------------------------------------------
      Every product div is the same size: the title, description and price bands

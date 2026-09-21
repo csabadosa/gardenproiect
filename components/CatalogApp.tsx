@@ -35,24 +35,19 @@ function Card({ p }: { p: Product }) {
         <img src={`/products/${p.id}.png`} alt={t.name(p.id, p.name)} loading="lazy" />
       </div>
       <div className="card-body">
-        <h3 className="card-name text-green-400">{t.name(p.id, p.name)}</h3>
+        <h3 className="card-name">{t.name(p.id, p.name)}</h3>
         <div className="card-code">{p.code || " "}</div>
         <hr className="rule" />
         <div className="card-row">
           <Shield size={20} />
           <span>{t.desc(p.desc)}</span>
         </div>
-        {/* Always render the dimensions band (empty when a product has no dims)
-            so every card reserves the same height and the title / description /
-            price bands line up across the whole catalog. */}
-        <div className="card-dims">
-          {p.dims ? (
-            <>
-              <Ruler size={15} style={{ verticalAlign: "-2px", marginRight: 6 }} />
-              {t.dims(p.dims)}
-            </>
-          ) : null}
-        </div>
+        {p.dims ? (
+          <div className="card-dims">
+            <Ruler size={15} style={{ verticalAlign: "-2px", marginRight: 6 }} />
+            {t.dims(p.dims)}
+          </div>
+        ) : null}
         <hr className="rule" />
         <div className="card-foot">
           <LivePrice id={p.id} quoteLabel={t.ui("requestQuote")} />
@@ -88,7 +83,7 @@ function CatalogInner() {
             <FlagSwitcher />
             <LiveBadge
               live={t.ui("badgeLive")}
-              saved={t.ui("badgeSaved")}
+              //saved={t.ui("badgeSaved")}
               builtin={t.ui("badgeBuiltin")}
               reading={t.ui("badgeReading")}
             />
