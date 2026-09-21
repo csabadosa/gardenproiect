@@ -97,8 +97,8 @@ const EXPORT_CSS = `
   table.pageframe > tfoot > tr > td { padding: 0 !important; border: 0 !important;
                                       background: var(--cream) !important; }
   /* The reserved cream band at the very top and bottom of each printed page.
-     Kept modest (8mm) so most of each sheet is usable for cards. */
-  table.pageframe .pf-spacer { height: 8mm; }
+     Kept small (6mm) so more of each sheet is usable for cards. */
+  table.pageframe .pf-spacer { height: 6mm; }
 
   /* -------- COVER (page 1) -------- */
   /* Force the two-column cover layout: at A4 print width (~794px) the app's
@@ -142,11 +142,11 @@ const EXPORT_CSS = `
      with width), so more rows fit per page. */
   table.pageframe td { vertical-align: top !important; }
   table.pageframe tr.pf-row { break-inside: avoid !important; }
-  table.pageframe tr.pf-row > td { padding: 5px !important; }
+  table.pageframe tr.pf-row > td { padding: 4px !important; }
   /* Card fills its cell so all three in a row share one height. */
   table.pageframe tr.pf-row > td > .card { height: 100% !important; }
   table.pageframe tr.pf-head { break-inside: avoid !important; break-after: avoid !important; }
-  table.pageframe tr.pf-head > td { padding: 14px 5px 12px !important; border: 0 !important; }
+  table.pageframe tr.pf-head > td { padding: 9px 5px 8px !important; border: 0 !important; }
   table.pageframe > tbody > tr:first-child.pf-head > td { padding-top: 0 !important; }
   .section-head { margin-bottom: 0 !important; }
   /* Compact cards so THREE rows fit per A4 sheet (the default 4/3 photo left
@@ -165,6 +165,28 @@ const EXPORT_CSS = `
   .card-dims { font-size: 10px !important; padding-left: 18px !important; margin-top: 3px !important; }
   .card-dims svg { width: 13px !important; height: 13px !important; }
   .rule { margin: 5px 0 !important; }
+
+  /* ---- Uniform card zones -------------------------------------------------
+     Every product div is the same size: the title, description and price bands
+     each reserve a FIXED height on every card (the media is already uniform —
+     same width, fixed aspect), so the three bands line up across the whole
+     catalog. Heights are sized to the tallest real content (title ≤2 lines,
+     description ≤5 lines, dims ≤2 lines, price ≤2 lines for the flower box's
+     dual price) and long text is line-clamped, so nothing overflows and shorter
+     cards simply carry blank space. The price is pinned to the bottom so its
+     baseline is identical everywhere. Cards lacking a dimensions line get an
+     empty .card-dims placeholder injected in buildCatalogDom so the band is
+     still reserved. */
+  .card-body { display: flex !important; flex-direction: column !important; }
+  .card-name { min-height: 2.16em !important; margin: 0 !important;
+               display: -webkit-box !important; -webkit-line-clamp: 2 !important;
+               -webkit-box-orient: vertical !important; overflow: hidden !important; }
+  .card-row { min-height: 6.4em !important; }
+  .card-row > span { display: -webkit-box !important; -webkit-line-clamp: 5 !important;
+                     -webkit-box-orient: vertical !important; overflow: hidden !important; }
+  .card-dims { min-height: 2.6em !important; overflow: hidden !important; }
+  .card-foot { margin-top: auto !important; min-height: 2.4em !important;
+               display: flex !important; align-items: flex-end !important; }
 
   /* -------- Table of Contents (last page) -------- */
   .toc-page { break-before: page !important; break-inside: avoid !important;
@@ -284,6 +306,19 @@ async function buildCatalogDom(page, logoSvg, labels) {
           tb.appendChild(hr);
         }
         const cards = Array.from(s.querySelectorAll(".card"));
+        // Reserve the dimensions band on cards that have no dims line, so the
+        // uniform-zone heights (see EXPORT_CSS) line up on every card.
+        cards.forEach((card) => {
+          if (!card.querySelector(".card-dims")) {
+            const row = card.querySelector(".card-row");
+            if (row) {
+              const d = document.createElement("div");
+              d.className = "card-dims";
+              d.innerHTML = "&nbsp;";
+              row.insertAdjacentElement("afterend", d);
+            }
+          }
+        });
         for (let i = 0; i < cards.length; i += COLS) {
           const tr = document.createElement("tr");
           tr.className = "pf-row";
