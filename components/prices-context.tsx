@@ -117,7 +117,7 @@ export function LivePrice({ id, quoteLabel }: { id: string; quoteLabel?: string 
 
 export function LiveBadge({
   live = "Live prices ·",
-  saved = "sheet saved",
+  saved = "",
   builtin = "built-in prices",
   reading = "reading sheet…",
 }: { live?: string; saved?: string; builtin?: string; reading?: string }) {
