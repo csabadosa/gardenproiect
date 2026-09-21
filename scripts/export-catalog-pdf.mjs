@@ -149,13 +149,22 @@ const EXPORT_CSS = `
   table.pageframe tr.pf-head > td { padding: 14px 5px 12px !important; border: 0 !important; }
   table.pageframe > tbody > tr:first-child.pf-head > td { padding-top: 0 !important; }
   .section-head { margin-bottom: 0 !important; }
-  .card { padding: 3mm !important; }
-  .card-body { padding: 10px 4px 4px !important; }
-  .card-name { font-size: 14px !important; line-height: 1.12 !important; }
-  .card-code { font-size: 11px !important; margin-top: 2px !important; }
-  .card-row { font-size: 11.5px !important; gap: 8px !important; }
-  .card-dims { font-size: 11px !important; padding-left: 22px !important; margin-top: 6px !important; }
-  .rule { margin: 10px 0 !important; }
+  /* Compact cards so THREE rows fit per A4 sheet (the default 4/3 photo left
+     room for only two, half-emptying every page that ended a section). A shorter
+     photo, tighter body padding/leading, slimmer dividers and smaller inline
+     icons shave enough off each row for a third to fit. */
+  .card { padding: 2mm !important; }
+  .card-media { aspect-ratio: 4/2.3 !important; }
+  .card-body { padding: 6px 4px 0 !important; }
+  .card-name { font-size: 12.5px !important; line-height: 1.08 !important; }
+  .card-code { font-size: 10px !important; margin-top: 1px !important; }
+  .card-row { font-size: 10.5px !important; line-height: 1.28 !important; gap: 6px !important;
+              align-items: flex-start !important; }
+  .card-row svg { width: 15px !important; height: 15px !important; flex: none !important;
+                  margin-top: 1px !important; }
+  .card-dims { font-size: 10px !important; padding-left: 18px !important; margin-top: 3px !important; }
+  .card-dims svg { width: 13px !important; height: 13px !important; }
+  .rule { margin: 5px 0 !important; }
 
   /* -------- Table of Contents (last page) -------- */
   .toc-page { break-before: page !important; break-inside: avoid !important;
