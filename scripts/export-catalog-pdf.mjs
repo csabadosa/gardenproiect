@@ -82,8 +82,8 @@ const ADS = [
     span: 2,
     html: `
       <div class="ad-inner">
-        <div class="ad-tag">Advertisement</div>
-        <div class="ad-hint">Placeholder text — there will be an ad here in the future</div>
+        <div class="ad-tag">Garden Project</div>
+        <div class="ad-hint">Szemetesre szükség van, próbáljuk megtalálni a legjobb megoldást, ami időt álló, természetes és betőlti a funkcióját. A Garden Proiect erre vállalkozik az önök szolgálatában. Ezek a termékek, mind az ön igényeit igyekeznek kielégíteni.</div>
       </div>`,
   },
 ];
@@ -214,7 +214,10 @@ const EXPORT_CSS = `
      An ad cell sits in the same grid row as the products, so it's exactly as
      tall as a product card. .ad-inner fills the cell; restyle it (or replace
      the box's html) to taste. */
-  table.pageframe td.ad-box { vertical-align: top !important; }
+  /* height:1px on the cell is the Chromium trick that lets the child's
+     height:100% resolve to the row's (stretched) height, so the ad box matches
+     the product-card height instead of shrinking to its own content. */
+  table.pageframe td.ad-box { vertical-align: top !important; height: 1px !important; }
   .ad-inner { height: 100%; box-sizing: border-box;
               border: 1.5px dashed rgba(47,107,59,0.45); border-radius: var(--radius);
               background: rgba(159,174,138,0.12);
