@@ -83,7 +83,19 @@ const ADS = [
     html: `
       <div class="ad-inner">
         <div class="ad-tag">Garden Project</div>
-        <div class="ad-hint">Szemetesre szükség van, próbáljuk megtalálni a legjobb megoldást, ami időt álló, természetes és betőlti a funkcióját. A Garden Proiect erre vállalkozik az önök szolgálatában. Ezek a termékek, mind az ön igényeit igyekeznek kielégíteni.</div>
+        <div class="ad-hint">Szemetesre szükség van, próbáljuk megtalálni a legjobb megoldást,
+         ami időt álló, természetes és betőlti a funkcióját. A Garden Proiect erre vállalkozik
+          az önök szolgálatában. Ezek a termékek, mind az ön igényeit igyekeznek kielégíteni.</div>
+      </div>`,
+  },
+  {
+    // Fills the two empty cells beside the lone bench at the top of page 3.
+    afterId: "bench-carved",
+    span: 2,
+    html: `
+      <div class="ad-inner">
+        <div class="ad-tag">Ha pihenni akarsz</div>
+        <div class="ad-hint">Ide azt a szöveget helyezheted el, amely a pihenésre ösztönöz.</div>
       </div>`,
   },
 ];
