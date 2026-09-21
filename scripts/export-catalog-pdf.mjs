@@ -66,6 +66,28 @@ const outPath = (lang) =>
     : resolve(REPO, `Garden-Proiect-Catalog-2026-${lang.toUpperCase()}.pdf`);
 const rawPath = (lang) => resolve(REPO, `.catalog-raw-${lang}.pdf`); // uncompressed intermediate
 
+// ---- Advertisement / filler boxes -----------------------------------------
+// Weave promo boxes into the product grid to use up half-empty rows. Each box
+// is dropped in RIGHT AFTER the product whose id is `afterId`, and spans `span`
+// grid columns (1–3). It flows with the grid, so it lands wherever that product
+// lands (no fragile page numbers). Put whatever you like in `html` — an <img>,
+// text, an offer. Set ADS = [] to remove them all.
+//
+//   Product ids live in lib/catalog.mjs (e.g. "waste-basket-2490" = MB01).
+//   The default box fills the two empty cells beside the lone waste basket on
+//   the Waste Baskets page.
+const ADS = [
+  {
+    afterId: "waste-basket-2490",
+    span: 2,
+    html: `
+      <div class="ad-inner">
+        <div class="ad-tag">Advertisement</div>
+        <div class="ad-hint">Placeholder text — there will be an ad here in the future</div>
+      </div>`,
+  },
+];
+
 // ---- Export-only CSS injected on top of the app's @media print rules -------
 const EXPORT_CSS = `
   /* Hide all on-screen / non-catalog chrome */
@@ -188,6 +210,21 @@ const EXPORT_CSS = `
   .card-foot { margin-top: auto !important; min-height: 2.4em !important;
                display: flex !important; align-items: flex-end !important; }
 
+  /* ---- Advertisement / filler boxes (see the ADS config) ------------------
+     An ad cell sits in the same grid row as the products, so it's exactly as
+     tall as a product card. .ad-inner fills the cell; restyle it (or replace
+     the box's html) to taste. */
+  table.pageframe td.ad-box { vertical-align: top !important; }
+  .ad-inner { height: 100%; box-sizing: border-box;
+              border: 1.5px dashed rgba(47,107,59,0.45); border-radius: var(--radius);
+              background: rgba(159,174,138,0.12);
+              display: flex; flex-direction: column; align-items: center; justify-content: center;
+              text-align: center; padding: 8mm; }
+  .ad-tag { font-family: var(--font-poppins), sans-serif; font-weight: 700; font-size: 11px;
+            letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); }
+  .ad-hint { font-family: var(--font-poppins), sans-serif; font-weight: 600; font-size: 16px;
+             color: var(--green-deep); margin-top: 8px; }
+
   /* -------- Table of Contents (last page) -------- */
   .toc-page { break-before: page !important; break-inside: avoid !important;
               padding: 30mm 0 0 !important; }
@@ -231,8 +268,8 @@ async function waitForImages(page) {
 }
 
 // Build the cover injections + the TOC page (with placeholder page numbers).
-async function buildCatalogDom(page, logoSvg, labels) {
-  return page.evaluate(({ logo, labels }) => {
+async function buildCatalogDom(page, logoSvg, labels, ads) {
+  return page.evaluate(({ logo, labels, ads }) => {
     const heroLeft = document.querySelector(".hero-grid > div");
     const vatText =
       document.querySelector(".terms-vat")?.textContent?.trim() || "Prices do not include VAT.";
@@ -319,16 +356,40 @@ async function buildCatalogDom(page, logoSvg, labels) {
             }
           }
         });
-        for (let i = 0; i < cards.length; i += COLS) {
-          const tr = document.createElement("tr");
-          tr.className = "pf-row";
-          for (let j = 0; j < COLS; j++) {
-            const td = document.createElement("td");
-            if (cards[i + j]) td.appendChild(cards[i + j]);
-            tr.appendChild(td);
+        // Build a token stream (cards, plus any ad boxes configured to follow a
+        // product) and flow it into rows of COLS columns. A card takes 1 column,
+        // an ad takes `span`; an ad that doesn't fit the current row's remaining
+        // columns starts a fresh row.
+        const idOf = (card) => {
+          const src = card.querySelector(".card-media img")?.getAttribute("src") || "";
+          const m = src.match(/\/products\/(.+?)\.[a-z0-9]+$/i);
+          return m ? m[1] : "";
+        };
+        const tokens = [];
+        cards.forEach((card) => {
+          tokens.push({ type: "card", el: card });
+          const ad = (ads || []).find((a) => a.afterId === idOf(card));
+          if (ad) tokens.push({ type: "ad", span: Math.min(Math.max(ad.span || 1, 1), COLS), html: ad.html });
+        });
+
+        let tr = null, col = 0;
+        const padRow = () => { while (tr && col < COLS) { tr.appendChild(document.createElement("td")); col++; } };
+        const startRow = () => { tr = document.createElement("tr"); tr.className = "pf-row"; tb.appendChild(tr); col = 0; };
+        for (const tk of tokens) {
+          const span = tk.type === "ad" ? tk.span : 1;
+          if (!tr || col + span > COLS) { padRow(); startRow(); }
+          const td = document.createElement("td");
+          if (span > 1) td.colSpan = span;
+          if (tk.type === "card") {
+            td.appendChild(tk.el);
+          } else {
+            td.className = "ad-box";
+            td.innerHTML = tk.html;
           }
-          tb.appendChild(tr);
+          tr.appendChild(td);
+          col += span;
         }
+        padRow();
       });
       table.appendChild(tb);
 
@@ -359,7 +420,7 @@ async function buildCatalogDom(page, logoSvg, labels) {
     }
 
     return titles;
-  }, { logo: logoSvg, labels });
+  }, { logo: logoSvg, labels, ads });
 }
 
 function pdfPageText(file, pageNum) {
@@ -500,7 +561,7 @@ async function exportLang(browser, gs, lang) {
   await page.addStyleTag({ content: EXPORT_CSS });
   await waitForImages(page);
 
-  const titles = await buildCatalogDom(page, LOGO_SVG, L);
+  const titles = await buildCatalogDom(page, LOGO_SVG, L, ADS);
   console.log(`✓ Built cover + TOC (${titles.length} sections).`);
   await waitForImages(page);
 
