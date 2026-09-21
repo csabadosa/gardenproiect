@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { SECTIONS, CONTACT, GALLERY } from "@/lib/catalog.mjs";
 import { PricesProvider, LivePrice, LiveBadge, type PricesMap } from "@/components/prices-context";
 import { LangProvider, useT, FlagSwitcher } from "@/components/lang";
-import { Logo, Shield, Ruler, Phone, Globe, Facebook } from "@/components/icons";
+import { Shield, Ruler, Phone, Globe, Facebook } from "@/components/icons";
 
 type Product = { id: string; name: string; code?: string; desc: string; dims?: string };
 type Section = { title: string; products: Product[] };
@@ -12,7 +12,12 @@ type Section = { title: string; products: Product[] };
 function Brand({ footer = false }: { footer?: boolean }) {
   return (
     <div className="brand">
-      <Logo size={footer ? 40 : 34} style={{ color: footer ? "#fff" : "var(--green-deep)" }} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="brand-mark"
+        src={footer ? "/logo-mark-white.png" : "/logo-mark.png"}
+        alt="Garden Proiect"
+      />
       <span className="wordmark">
         <b>GARDEN</b>
         <span>PROIECT</span>
@@ -138,6 +143,7 @@ function CatalogInner() {
               {section.products.map((p) => (
                 <Card key={p.id} p={p} />
               ))}
+              
             </div>
           </div>
         </section>

@@ -42,14 +42,14 @@
         },
         "garbage bin": {
             "title": "Waste basket",
-            "code": "IB01"
-        },
-        "garbage bin 2": {
-            "title": "Waste basket",
             "code": "-"
         },
+        "garbage bin 2": {
+            "title": "Round Roofed Waste Basket",
+            "code": "IB01"
+        },
         "garbage bin 3": {
-            "title": "Waste basket",
+            "title": "Square Roofed Waste Basket",
             "code": "-"
         },
         "garbage bin 4": {
@@ -244,9 +244,40 @@
         "Pine wood, treated with special paint. Available in selected colors. Roof on request (quote). Table and chairs on request (quote).": "Pine wood, treated with special paint. Available in selected colors. Roof on request (quote). Table and chairs on request (quote).",
         "Carved stone, metal.": "Carved stone, metal.",
         "Wood (oak, acacia) and metal with special paint. Available in selected colors. Recommended for private gardens.": "Wood (oak, acacia) and metal with special paint. Available in selected colors. Recommended for private gardens.",
-        "Wood and metal with special paint. Available in selected colors.": "Wood and metal with special paint. Available in selected colors."
+        "Wood and metal with special paint. Available in selected colors.": "Wood and metal with special paint. Available in selected colors.",
+        "Solid wood bench with metal bracing": "Solid wood bench with metal bracing"
     },
     "dims": {
-        "Length 160 · Width 60 · Height 80 cm": "Length 160 · Width 60 · Height 80 cm"
+        "Length 160 · Width 60 · Height 80 cm": "Length 160 · Width 60 · Height 80 cm",
+        "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm": "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm",
+        "Length 180 · Seat height 45 · Back height 85 cm": "Length 180 · Seat height 45 · Back height 85 cm",
+        "Length 180 · Seat height 45 · Back height 82 cm": "Length 180 · Seat height 45 · Back height 82 cm",
+        "Length 180 · Depth 55 · Height 45 cm": "Length 180 · Depth 55 · Height 45 cm",
+        "Length 360 · Seat height 45 · Back height 82 cm": "Length 360 · Seat height 45 · Back height 82 cm",
+        "Length 180 · Depth 50 · Height 90 cm": "Length 180 · Depth 50 · Height 90 cm",
+        "Width 50 · Height 122 cm": "Width 50 · Height 122 cm",
+        "55 × 55 · Height 115 cm": "55 × 55 · Height 115 cm",
+        "172 × 172 · Height 300 cm": "172 × 172 · Height 300 cm",
+        "Length 140 · Seat height 45 · Back height 100 cm": "Length 140 · Seat height 45 · Back height 100 cm",
+        "Width 225 · Depth 195 · Seat height 60 cm": "Width 225 · Depth 195 · Seat height 60 cm",
+        "Top 180 × 90 cm": "Top 180 × 90 cm",
+        "Length 240 · Width 90 · Height 90 cm": "Length 240 · Width 90 · Height 90 cm",
+        "Width 180 · Height 240 cm": "Width 180 · Height 240 cm",
+        "Length 148 · Height 44 cm": "Length 148 · Height 44 cm",
+        "Length 400 · Height 50 cm": "Length 400 · Height 50 cm",
+        "Seat 46 × 34 cm": "Seat 46 × 34 cm",
+        "Seat 46 × 34 · Height 35 cm": "Seat 46 × 34 · Height 35 cm",
+        "Length 200 · Depth 50 · Height 80 cm": "Length 200 · Depth 50 · Height 80 cm",
+        "370 × 220 cm": "370 × 220 cm",
+        "Length 300 · Height 20 cm": "Length 300 · Height 20 cm",
+        "Width 306 · Depth 153 · Height 200 cm": "Width 306 · Depth 153 · Height 200 cm",
+        "Length 260 · Width 95 · Height 200 cm": "Length 260 · Width 95 · Height 200 cm",
+        "Length 112 · Width 40 · Height 75 cm": "Length 112 · Width 40 · Height 75 cm",
+        "83 × 83 · Height 45 cm": "83 × 83 · Height 45 cm",
+        "Length 90 · Height 35 cm": "Length 90 · Height 35 cm",
+        "Width 455 · Height 380 cm": "Width 455 · Height 380 cm",
+        "Width 450 · Height 350 cm": "Width 450 · Height 350 cm",
+        "Width 485 · Depth 220 · Height 260 cm": "Width 485 · Depth 220 · Height 260 cm",
+        "Width 375 · Depth 275 · Height 375 cm": "Width 375 · Depth 275 · Height 375 cm"
     }
 }

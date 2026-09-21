@@ -42,14 +42,14 @@
         },
         "garbage bin": {
             "title": "Szemetes",
-            "code": "IB01"
-        },
-        "garbage bin 2": {
-            "title": "Szemetes",
             "code": "-"
         },
+        "garbage bin 2": {
+            "title": "Kerek tetős szemetes",
+            "code": "IB01"
+        },
         "garbage bin 3": {
-            "title": "Szemetes",
+            "title": "Négyzetes tetős szemetes",
             "code": "-"
         },
         "garbage bin 4": {
@@ -232,7 +232,7 @@
         "Large Play Structures": "Nagy játszótéri szerkezetek"
     },
     "descriptions": {
-       "Wood (oak, acacia) and metal with special paint. Available in selected colors.": "Fa (tölgy, akác) és fém különleges festéssel. Faragott motívumok. Válogatott színekben kapható.",
+        "Wood (oak, acacia) and metal with special paint. Available in selected colors.": "Fa (tölgy, akác) és fém különleges festéssel. Faragott motívumok. Válogatott színekben kapható.",
         "Wood (oak, acacia) and metal treated with a special protective coating. Available in various colors upon request.": "Fa (tölgy, akác) és fém speciális védőbevonattal kezelve. Igény szerint különböző színekben kapható.",
         "Wood (oak, acacia) and metal with a special coating. Available in different colors upon request.": "Fa (tölgy, akác) és fém speciális bevonattal. Igény szerint különböző színekben kapható.",
         "Wood (oak, acacia) and metal treated with special paint. Available in selected colors.": "Fa (tölgy, akác) és fém különleges festékkel kezelve. Válogatott színekben kapható.",
@@ -244,9 +244,40 @@
         "Pine wood, treated with special paint. Available in selected colors. Roof on request (quote). Table and chairs on request (quote).": "Fenyőfa, különleges festékkel kezelve. Válogatott színekben kapható. Tető igény szerint (ajánlat). Asztal és székek igény szerint (ajánlat).",
         "Carved stone, metal.": "Faragott kő, fém.",
         "Wood (oak, acacia) and metal with special paint. Available in selected colors. Recommended for private gardens.": "Fa (tölgy, akác) és fém különleges festéssel. Válogatott színekben kapható. Magánkertekbe ajánlott.",
-        "Wood and metal with special paint. Available in selected colors.": "Fa és fém különleges festéssel. Válogatott színekben kapható."
+        "Wood and metal with special paint. Available in selected colors.": "Fa és fém különleges festéssel. Válogatott színekben kapható.",
+        "Solid wood bench with metal bracing": "Tömör fából készült pad fém merevítéssel"
     },
     "dims": {
-        "Length 160 · Width 60 · Height 80 cm": "Hossz 160 · Szélesség 60 · Magasság 80 cm"
+        "Length 160 · Width 60 · Height 80 cm": "Hossz 160 · Szélesség 60 · Magasság 80 cm",
+        "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm": "Külső Ø 320 · Belső 180 · Ülésmagasság 45 · Támlamagasság 85 cm",
+        "Length 180 · Seat height 45 · Back height 85 cm": "Hossz 180 · Ülésmagasság 45 · Támlamagasság 85 cm",
+        "Length 180 · Seat height 45 · Back height 82 cm": "Hossz 180 · Ülésmagasság 45 · Támlamagasság 82 cm",
+        "Length 180 · Depth 55 · Height 45 cm": "Hossz 180 · Mélység 55 · Magasság 45 cm",
+        "Length 360 · Seat height 45 · Back height 82 cm": "Hossz 360 · Ülésmagasság 45 · Támlamagasság 82 cm",
+        "Length 180 · Depth 50 · Height 90 cm": "Hossz 180 · Mélység 50 · Magasság 90 cm",
+        "Width 50 · Height 122 cm": "Szélesség 50 · Magasság 122 cm",
+        "55 × 55 · Height 115 cm": "55 × 55 · Magasság 115 cm",
+        "172 × 172 · Height 300 cm": "172 × 172 · Magasság 300 cm",
+        "Length 140 · Seat height 45 · Back height 100 cm": "Hossz 140 · Ülésmagasság 45 · Támlamagasság 100 cm",
+        "Width 225 · Depth 195 · Seat height 60 cm": "Szélesség 225 · Mélység 195 · Ülésmagasság 60 cm",
+        "Top 180 × 90 cm": "Asztallap 180 × 90 cm",
+        "Length 240 · Width 90 · Height 90 cm": "Hossz 240 · Szélesség 90 · Magasság 90 cm",
+        "Width 180 · Height 240 cm": "Szélesség 180 · Magasság 240 cm",
+        "Length 148 · Height 44 cm": "Hossz 148 · Magasság 44 cm",
+        "Length 400 · Height 50 cm": "Hossz 400 · Magasság 50 cm",
+        "Seat 46 × 34 cm": "Ülőke 46 × 34 cm",
+        "Seat 46 × 34 · Height 35 cm": "Ülőke 46 × 34 · Magasság 35 cm",
+        "Length 200 · Depth 50 · Height 80 cm": "Hossz 200 · Mélység 50 · Magasság 80 cm",
+        "370 × 220 cm": "370 × 220 cm",
+        "Length 300 · Height 20 cm": "Hossz 300 · Magasság 20 cm",
+        "Width 306 · Depth 153 · Height 200 cm": "Szélesség 306 · Mélység 153 · Magasság 200 cm",
+        "Length 260 · Width 95 · Height 200 cm": "Hossz 260 · Szélesség 95 · Magasság 200 cm",
+        "Length 112 · Width 40 · Height 75 cm": "Hossz 112 · Szélesség 40 · Magasság 75 cm",
+        "83 × 83 · Height 45 cm": "83 × 83 · Magasság 45 cm",
+        "Length 90 · Height 35 cm": "Hossz 90 · Magasság 35 cm",
+        "Width 455 · Height 380 cm": "Szélesség 455 · Magasság 380 cm",
+        "Width 450 · Height 350 cm": "Szélesség 450 · Magasság 350 cm",
+        "Width 485 · Depth 220 · Height 260 cm": "Szélesség 485 · Mélység 220 · Magasság 260 cm",
+        "Width 375 · Depth 275 · Height 375 cm": "Szélesség 375 · Mélység 275 · Magasság 375 cm"
     }
 }

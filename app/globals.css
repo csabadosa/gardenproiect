@@ -59,6 +59,8 @@ a { color: inherit; text-decoration: none; }
 }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark { width: auto; height: 34px; flex: none; }
+.footer .brand-mark { height: 40px; }
 .brand .wordmark { display: flex; flex-direction: column; line-height: 0.98; }
 .brand .wordmark b { font-family: var(--font-poppins); font-weight: 700; letter-spacing: 0.18em; font-size: 15px; color: var(--green-deep); }
 .brand .wordmark span { font-family: var(--font-poppins); font-weight: 400; letter-spacing: 0.34em; font-size: 10.5px; color: var(--olive); }
@@ -272,11 +274,23 @@ a { color: inherit; text-decoration: none; }
 
   /* Product grid: keep 3 up, but never split a card across pages */
   .grid { gap: 14px !important; }
+  /* Inset the photo inside the card so no product image ever touches a paper
+     edge — even under the dialog's "Margins: None", where @page margin is 0 and
+     a card can land flush at the very top or bottom of a page (mid-grid page
+     break). A margin here would collapse at the page break; padding on a
+     break-inside:avoid box is preserved, so this inset survives even for the
+     first/last card on a page. The paper edge then meets the card's own light
+     background (blends with the cream page), never the dark photo. */
   .card {
     break-inside: avoid;
     border: 1px solid rgba(47, 107, 59, 0.28) !important;
+    padding: 4mm !important;
   }
-  .card-body { padding: 12px 14px 14px !important; }
+  /* Matte the photo: its own radius frames it inside the padded card. */
+  .card-media { border-radius: 12px !important; }
+  /* The card padding now supplies the side/top inset, so trim the body's own
+     horizontal padding to keep the text from sitting too far in. */
+  .card-body { padding: 12px 4px 4px !important; }
 
   /* Make sure the live price is legible in print */
   .price, .price.quote { font-size: 14px !important; }

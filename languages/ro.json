@@ -42,14 +42,14 @@
         },
         "garbage bin": {
             "title": "coș de gunoi",
-            "code": "IB01"
-        },
-        "garbage bin 2": {
-            "title": "Coș de gunoi",
             "code": "-"
         },
+        "garbage bin 2": {
+            "title": "Coș de gunoi cu acoperiș rotund",
+            "code": "IB01"
+        },
         "garbage bin 3": {
-            "title": "Coș de gunoi",
+            "title": "Coș de gunoi cu acoperiș pătrat",
             "code": "-"
         },
         "garbage bin 4": {
@@ -244,9 +244,40 @@
         "Pine wood, treated with special paint. Available in selected colors. Roof on request (quote). Table and chairs on request (quote).": "Lemn de pin, tratat cu vopsea specială. Disponibil în culori selectate. Acoperiș la cerere (ofertă). Masă și scaune la cerere (ofertă).",
         "Carved stone, metal.": "Piatră sculptată, metal.",
         "Wood (oak, acacia) and metal with special paint. Available in selected colors. Recommended for private gardens.": "Lemn (stejar, salcâm) și metal cu vopsea specială. Disponibil în culori selectate. Recomandat pentru grădini private.",
-        "Wood and metal with special paint. Available in selected colors.": "Lemn și metal cu vopsea specială. Disponibil în culori selectate."
+        "Wood and metal with special paint. Available in selected colors.": "Lemn și metal cu vopsea specială. Disponibil în culori selectate.",
+        "Solid wood bench with metal bracing": "Bancă din lemn masiv cu întărituri metalice"
     },
     "dims": {
-        "Length 160 · Width 60 · Height 80 cm": "Lungime 160 · Lățime 60 · Înălțime 80 cm"
+        "Length 160 · Width 60 · Height 80 cm": "Lungime 160 · Lățime 60 · Înălțime 80 cm",
+        "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm": "Ø exterior 320 · Interior 180 · Înălțime șezut 45 · Înălțime spătar 85 cm",
+        "Length 180 · Seat height 45 · Back height 85 cm": "Lungime 180 · Înălțime șezut 45 · Înălțime spătar 85 cm",
+        "Length 180 · Seat height 45 · Back height 82 cm": "Lungime 180 · Înălțime șezut 45 · Înălțime spătar 82 cm",
+        "Length 180 · Depth 55 · Height 45 cm": "Lungime 180 · Adâncime 55 · Înălțime 45 cm",
+        "Length 360 · Seat height 45 · Back height 82 cm": "Lungime 360 · Înălțime șezut 45 · Înălțime spătar 82 cm",
+        "Length 180 · Depth 50 · Height 90 cm": "Lungime 180 · Adâncime 50 · Înălțime 90 cm",
+        "Width 50 · Height 122 cm": "Lățime 50 · Înălțime 122 cm",
+        "55 × 55 · Height 115 cm": "55 × 55 · Înălțime 115 cm",
+        "172 × 172 · Height 300 cm": "172 × 172 · Înălțime 300 cm",
+        "Length 140 · Seat height 45 · Back height 100 cm": "Lungime 140 · Înălțime șezut 45 · Înălțime spătar 100 cm",
+        "Width 225 · Depth 195 · Seat height 60 cm": "Lățime 225 · Adâncime 195 · Înălțime șezut 60 cm",
+        "Top 180 × 90 cm": "Blat 180 × 90 cm",
+        "Length 240 · Width 90 · Height 90 cm": "Lungime 240 · Lățime 90 · Înălțime 90 cm",
+        "Width 180 · Height 240 cm": "Lățime 180 · Înălțime 240 cm",
+        "Length 148 · Height 44 cm": "Lungime 148 · Înălțime 44 cm",
+        "Length 400 · Height 50 cm": "Lungime 400 · Înălțime 50 cm",
+        "Seat 46 × 34 cm": "Șezut 46 × 34 cm",
+        "Seat 46 × 34 · Height 35 cm": "Șezut 46 × 34 · Înălțime 35 cm",
+        "Length 200 · Depth 50 · Height 80 cm": "Lungime 200 · Adâncime 50 · Înălțime 80 cm",
+        "370 × 220 cm": "370 × 220 cm",
+        "Length 300 · Height 20 cm": "Lungime 300 · Înălțime 20 cm",
+        "Width 306 · Depth 153 · Height 200 cm": "Lățime 306 · Adâncime 153 · Înălțime 200 cm",
+        "Length 260 · Width 95 · Height 200 cm": "Lungime 260 · Lățime 95 · Înălțime 200 cm",
+        "Length 112 · Width 40 · Height 75 cm": "Lungime 112 · Lățime 40 · Înălțime 75 cm",
+        "83 × 83 · Height 45 cm": "83 × 83 · Înălțime 45 cm",
+        "Length 90 · Height 35 cm": "Lungime 90 · Înălțime 35 cm",
+        "Width 455 · Height 380 cm": "Lățime 455 · Înălțime 380 cm",
+        "Width 450 · Height 350 cm": "Lățime 450 · Înălțime 350 cm",
+        "Width 485 · Depth 220 · Height 260 cm": "Lățime 485 · Adâncime 220 · Înălțime 260 cm",
+        "Width 375 · Depth 275 · Height 375 cm": "Lățime 375 · Adâncime 275 · Înălțime 375 cm"
     }
 }
