@@ -74,7 +74,7 @@ function renderEntries(entries: PriceEntry[], quoteLabel?: string) {
         {entries.map((e, i) => (
           <span key={i}>
             {e.price !== null ? `${formatLei(e.price)} ${e.unit || "lei"}` : (quoteLabel || e.note)}
-            {e.label ? <span className="variant"> — {e.label}</span> : null}
+            {e.label ? <span className="variant">—{e.label}</span> : null}
           </span>
         ))}
       </span>
