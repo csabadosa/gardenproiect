@@ -152,6 +152,13 @@ const EXPORT_CSS = `
      right and top edges still bleed full. */
   @page { margin: 0 0 12mm 0 !important; size: A4; }
 
+  /* The green footer band (mound + page number) is painted on EVERY page by
+     Chromium — it cannot be suppressed per-page from CSS. So the two COVERS (the
+     first sheet .hero and the last sheet .closing-page) get their page number
+     dropped a different way: the final PDF is rendered in three page ranges and
+     the covers use a mound-only footer (no number), while pages 2…N-1 use the
+     numbered footer — see renderPdfFinal(). The covers still show the mound. */
+
   /* All product cards live in this ONE table at export time (see the DOM notes
      in buildCatalogDom). A single table — never a table nested in another
      table's cell — is essential: a nested fixed-layout table has its column
@@ -326,17 +333,18 @@ const EXPORT_CSS = `
                        font-size: 17px; color: var(--green); min-width: 28px; text-align: right; }
 
   /* -------- Closing / back-cover page (the very last sheet) -----------------
-     A full A4 cream page: the white header band + contact chips are anchored at
-     the TOP, and a large tree mark is centred in the MIDDLE of the sheet
-     (absolutely positioned so it centres on the page, not on the leftover space
-     below the header). */
+     A full A4 cream page: the white header band is anchored at the TOP, a large
+     tree mark is centred in the MIDDLE, and the contact chips sit at the BOTTOM
+     (just above the decorative mound). This page is a COVER — no page number. */
   /* min-height is the USABLE sheet height (297mm − the 12mm footer band); a full
-     297mm here would overflow past the reserved band onto a blank extra page. */
+     297mm here would overflow past the reserved band onto a blank extra page. The
+     contact chips are pinned to the bottom of that usable area, just above the
+     mound; the mound (no number) is drawn by the plain footer in renderPdfFinal. */
   .closing-page { break-before: page !important; break-inside: avoid !important;
                   position: relative; min-height: 282mm; display: flex;
                   flex-direction: column; align-items: center; justify-content: flex-start; }
-  .closing-page .closing-contact { display: flex; flex-wrap: wrap; gap: 12px;
-                  justify-content: center; margin-top: 40px; padding: 0 16mm; }
+  .closing-page .closing-contact { position: absolute; left: 0; right: 0; bottom: 14mm;
+                  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; padding: 0 16mm; }
   .closing-page .closing-mark { position: absolute; top: 50%; left: 50%;
                   transform: translate(-50%, -50%); height: 90mm; width: auto; display: block; }
   /* On the CLOSING page only, mirror the "G" of the wordmark so it faces the
@@ -536,24 +544,24 @@ async function buildCatalogDom(page, banner, labels, ads) {
     }
 
     // 5) Closing / back-cover page — the very last sheet. The white header band
-    //    (tree mark + "Garden Proiect") and the contact chips cloned from the
-    //    cover sit at the TOP of the page; a large tree mark is centred in the
-    //    middle of the sheet.
+    //    (tree mark + "Garden Proiect") sits at the TOP, a large tree mark is
+    //    centred in the middle, and the contact chips are pinned to the BOTTOM
+    //    (just above the mound, which the plain footer draws). No page number.
     if (!document.querySelector(".closing-page")) {
       const closing = document.createElement("section");
       closing.className = "closing-page";
       closing.appendChild(makeBanner());
+      const mark = document.createElement("img");
+      mark.src = "/closing-mark.png";
+      mark.alt = "";
+      mark.className = "closing-mark";
+      closing.appendChild(mark);
       const heroContact = document.querySelector(".hero-contact");
       if (heroContact) {
         const contact = heroContact.cloneNode(true);
         contact.classList.add("closing-contact");
         closing.appendChild(contact);
       }
-      const mark = document.createElement("img");
-      mark.src = "/closing-mark.png";
-      mark.alt = "";
-      mark.className = "closing-mark";
-      closing.appendChild(mark);
       document.body.appendChild(closing);
     }
 
@@ -611,34 +619,71 @@ function findSectionPages(file, titles) {
 // the mound is a shallow full-width lens (preserveAspectRatio:none stretches it)
 // in the catalog's soft green, with the page number in white on its fuller
 // middle. HEADER is an empty div so Chromium doesn't print its default title.
-const FOOTER_TEMPLATE = `
+// The green "ground" mound — a shallow full-width lens (preserveAspectRatio:none
+// stretches it edge-to-edge) in the catalog's soft green. Shared by the print
+// footer (content pages, with a page number on top) and the DOM cover mounds
+// (front + back covers, no number). Fills whatever 12mm-tall box contains it.
+const MOUND_SVG =
+  `<svg viewBox="0 0 1200 70" preserveAspectRatio="none" style="width:100%; height:100%; display:block;">` +
+  `<path d="M0,55 C400,18 800,18 1200,55 C800,65 400,65 0,55 Z" fill="#26422a"></path></svg>`;
+
+// Two footer variants share the same 12mm cream band + mound (so the page layout
+// is identical either way): FOOTER_NUM adds the centred page number, FOOTER_PLAIN
+// omits it. Covers get FOOTER_PLAIN, inner pages FOOTER_NUM (see renderPdfFinal).
+const footerHtml = (withNumber) => `
   <div style="position:fixed; left:0; right:0; bottom:0; width:100%; height:12mm; margin:0; padding:0;
               background:#efeadd; -webkit-print-color-adjust:exact; print-color-adjust:exact;
               font-family:'Poppins','Helvetica Neue',Arial,sans-serif;">
-    <svg viewBox="0 0 1200 70" preserveAspectRatio="none"
-         style="position:absolute; left:0; bottom:0; width:100%; height:12mm; display:block;">
-      <path d="M0,55 C400,18 800,18 1200,55 C800,65 400,65 0,55 Z" fill="#6aa373"></path>
-    </svg>
-    <span class="pageNumber"
-          style="position:absolute; left:0; right:0; bottom:2mm; text-align:center;
-                 font-size:9px; font-weight:700; color:#ffffff;"></span>
+    ${MOUND_SVG}
+    ${withNumber
+      ? `<span class="pageNumber" style="position:absolute; left:0; right:0; bottom:2mm; text-align:center;
+                 font-size:9px; font-weight:700; color:#ffffff;"></span>`
+      : ``}
   </div>`;
+const FOOTER_NUM = footerHtml(true);
+const FOOTER_PLAIN = footerHtml(false);
 
+// Common page.pdf() options. `@page { size:A4; margin:0 0 12mm 0 }` bleeds the
+// cream html/body to the left/right/top paper edges (no white margin) and
+// reserves a 12mm bottom band for the footer. Chromium ignores page.pdf({margin})
+// when the page CSS sets an @page margin, so margins live in EXPORT_CSS.
+const PDF_OPTS = {
+  printBackground: true,
+  preferCSSPageSize: true,
+  displayHeaderFooter: true,
+  headerTemplate: `<div></div>`,
+};
+
+// Single-shot render (used by pass 1, where the numbers are irrelevant — we only
+// scan the text to locate sections).
 async function renderPdf(page) {
-  return page.pdf({
-    printBackground: true,
-    // Honour the injected `@page { size:A4; margin:0 0 12mm 0 }` so the cream
-    // html/body background bleeds to the left/right/top paper edges (no white
-    // margin) while a 12mm bottom band is reserved for the footer below. The
-    // per-page top cream breathing room is still supplied by the repeating
-    // pageframe <thead> spacer. NOTE: Chromium ignores the page.pdf({margin})
-    // option when the page CSS has an @page margin, so margins MUST be set via
-    // @page in EXPORT_CSS — the footer only draws INTO the band @page reserves.
-    preferCSSPageSize: true,
-    displayHeaderFooter: true,
-    headerTemplate: `<div></div>`,
-    footerTemplate: FOOTER_TEMPLATE,
-  });
+  return page.pdf({ ...PDF_OPTS, footerTemplate: FOOTER_NUM });
+}
+
+// Final render: pages 2…N-1 carry the numbered footer; the first and last sheets
+// (the covers) carry the plain footer (mound, no number). Rendered as three page
+// ranges and stitched back together with poppler's `pdfunite`. `pageRanges`
+// preserves each page's ORIGINAL number, so the inner numbers still match the TOC.
+async function renderPdfFinal(page, total, outPath) {
+  const { writeFile } = await import("node:fs/promises");
+  if (total < 3) {
+    // Degenerate (no real inner pages) — just number everything.
+    await writeFile(outPath, await renderPdf(page));
+    return;
+  }
+  const cover = await page.pdf({ ...PDF_OPTS, pageRanges: "1", footerTemplate: FOOTER_PLAIN });
+  const inner = await page.pdf({ ...PDF_OPTS, pageRanges: `2-${total - 1}`, footerTemplate: FOOTER_NUM });
+  const back = await page.pdf({ ...PDF_OPTS, pageRanges: `${total}`, footerTemplate: FOOTER_PLAIN });
+  const parts = ["cover", "inner", "back"].map((n) => outPath.replace(/\.pdf$/, `.${n}.pdf`));
+  await Promise.all([writeFile(parts[0], cover), writeFile(parts[1], inner), writeFile(parts[2], back)]);
+  try {
+    execFileSync("pdfunite", [...parts, outPath], { stdio: "ignore" });
+  } catch (err) {
+    console.warn(`⚠  pdfunite failed (${err.message}) — falling back to numbered covers.`);
+    await writeFile(outPath, await renderPdf(page));
+  } finally {
+    parts.forEach((p) => existsSync(p) && rmSync(p, { force: true }));
+  }
 }
 
 // ---- Color-safe Ghostscript flags -------------------------------------------
@@ -736,6 +781,7 @@ async function exportLang(browser, gs, lang) {
   console.log("→ Pass 1: rendering to locate section pages …");
   await writeFile(RAW, await renderPdf(page));
   const mapping = findSectionPages(RAW, titles);
+  const totalPages = pageCount(RAW);
   console.log("  Section → page mapping:");
   mapping.forEach((m) => console.log(`    p.${String(m.page).padStart(3)}  ${m.title}`));
 
@@ -748,7 +794,7 @@ async function exportLang(browser, gs, lang) {
     });
   }, mapping.map((m) => m.page));
   await waitForImages(page);
-  await writeFile(RAW, await renderPdf(page));
+  await renderPdfFinal(page, totalPages, RAW);
 
   await context.close();
 

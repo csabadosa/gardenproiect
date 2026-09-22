@@ -146,7 +146,7 @@
         },
         "Wooden ship": {
             "title": "Fahajó",
-            "code": "EK01"
+            "code": "BOAT01"
         },
         "Balancing snake": {
             "title": "Egyensúlyozó kígyó",
@@ -166,11 +166,11 @@
         },
         "Mini castle playground": {
             "title": "Mini vár típusú játszókomplexum",
-            "code": "MINI01"
+            "code": "TW01"
         },
         "Double solid wood swing set with tower-style slide": {
             "title": "Dupla tömörfa hintaállvány torony típusú csúszdával",
-            "code": "TW01"
+            "code": "TW02"
         },
         "Double solid wood swing set with slide": {
             "title": "Dupla tömörfa hintaállvány csúszdával",
@@ -190,7 +190,7 @@
         },
         "Rustic Solid Wood Swing with Roof": {
             "title": "Rusztikus tömörfa hinta tetővel",
-            "code": "-"
+            "code": "HI02"
         },
         "Solid wood bell tower": {
             "title": "Tömörfa harangláb",
@@ -251,10 +251,13 @@
         "Length 160 · Width 60 · Height 80 cm": "Hossz 160 · Szélesség 60 · Magasság 80 cm",
         "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm": "Külső Ø 320 · Belső 180 · Ülésmagasság 45 · Támlamagasság 85 cm",
         "Length 180 · Seat height 45 · Back height 85 cm": "Hossz 180 · Ülésmagasság 45 · Támlamagasság 85 cm",
-        "Length 180 · Seat height 45 · Back height 82 cm": "Hossz 180 · Ülésmagasság 45 · Támlamagasság 82 cm",
+        "Length 130 · Seat height 45 · Back height 62 cm": "Hossz 130 · Ülésmagasság 45 · Támlamagasság 62 cm",
         "Length 180 · Depth 55 · Height 45 cm": "Hossz 180 · Mélység 55 · Magasság 45 cm",
         "Length 360 · Seat height 45 · Back height 82 cm": "Hossz 360 · Ülésmagasság 45 · Támlamagasság 82 cm",
         "Length 180 · Depth 50 · Height 90 cm": "Hossz 180 · Mélység 50 · Magasság 90 cm",
+        "Length 260 · Depth 55": "Hossz 260 · Mélység 55",
+        "Length 190 · Depth 55": "Hossz 190 · Mélység 55",
+        "Height 148 · Width 75": "Magasság 148 · Szélesség 75",
         "Width 50 · Height 122 cm": "Szélesség 50 · Magasság 122 cm",
         "55 × 55 · Height 115 cm": "55 × 55 · Magasság 115 cm",
         "172 × 172 · Height 300 cm": "172 × 172 · Magasság 300 cm",

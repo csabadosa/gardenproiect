@@ -146,7 +146,7 @@
         },
         "Wooden ship": {
             "title": "Wooden boat",
-            "code": "EK01"
+            "code": "BOAT01"
         },
         "Balancing snake": {
             "title": "Balancing snake beam",
@@ -166,11 +166,11 @@
         },
         "Mini castle playground": {
             "title": "Mini castle playground complex",
-            "code": "MINI01"
+            "code": "TW01"
         },
         "Double solid wood swing set with tower-style slide": {
             "title": "Double solid wood swing set with tower-style slide",
-            "code": "TW01"
+            "code": "TW02"
         },
         "Double solid wood swing set with slide": {
             "title": "Double solid wood swing set with slide",
@@ -190,7 +190,7 @@
         },
         "Rustic Solid Wood Swing with Roof": {
             "title": "Rustic solid wood swing with roof",
-            "code": "-"
+            "code": "HI02"
         },
         "Solid wood bell tower": {
             "title": "Solid wood bell tower",
@@ -251,8 +251,11 @@
         "Length 160 · Width 60 · Height 80 cm": "Length 160 · Width 60 · Height 80 cm",
         "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm": "Outer Ø 320 · Inner 180 · Seat height 45 · Back height 85 cm",
         "Length 180 · Seat height 45 · Back height 85 cm": "Length 180 · Seat height 45 · Back height 85 cm",
-        "Length 180 · Seat height 45 · Back height 82 cm": "Length 180 · Seat height 45 · Back height 82 cm",
+        "Length 130 · Seat height 45 · Back height 62 cm": "Length 130 · Seat height 45 · Back height 62 cm",
         "Length 180 · Depth 55 · Height 45 cm": "Length 180 · Depth 55 · Height 45 cm",
+        "Length 260 · Depth 55": "Length 260 · Depth 55",
+        "Length 190 · Depth 55": "Length 190 · Depth 55",
+        "Height 148 · Width 75": "Height 148 · Width 75",
         "Length 360 · Seat height 45 · Back height 82 cm": "Length 360 · Seat height 45 · Back height 82 cm",
         "Length 180 · Depth 50 · Height 90 cm": "Length 180 · Depth 50 · Height 90 cm",
         "Width 50 · Height 122 cm": "Width 50 · Height 122 cm",
