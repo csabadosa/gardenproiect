@@ -70,8 +70,15 @@ const rawPath = (lang) => resolve(REPO, `.catalog-raw-${lang}.pdf`); // uncompre
 // Weave promo boxes into the product grid to use up half-empty rows. Each box
 // is dropped in RIGHT AFTER the product whose id is `afterId`, and spans `span`
 // grid columns (1–3). It flows with the grid, so it lands wherever that product
-// lands (no fragile page numbers). Put whatever you like in `html` — an <img>,
-// text, an offer. Set ADS = [] to remove them all.
+// lands (no fragile page numbers). Set ADS = [] to remove them all.
+//
+// The copy is LOCALIZED: each ad carries a `text` map keyed by language code
+// (en/ro/hu), each holding a `{ tag, hint }` pair. At export time adHtml()
+// picks the row matching the catalog's language (falling back to EN, then to
+// whatever is defined) and wraps it in the .ad-inner / .ad-tag / .ad-hint box —
+// so the Romanian catalog gets Romanian promos, the Hungarian one Hungarian,
+// etc. For a box with fully custom markup, set `html` instead of `text` and it
+// is used verbatim in every language.
 //
 //   Product ids live in lib/catalog.mjs (e.g. "waste-basket-2490" = MB01).
 //   The default box fills the two empty cells beside the lone waste basket on
@@ -80,25 +87,95 @@ const ADS = [
   {
     afterId: "waste-basket-2490",
     span: 2,
-    html: `
-      <div class="ad-inner">
-        <div class="ad-tag">Garden Project</div>
-        <div class="ad-hint">Szemetesre szükség van, próbáljuk megtalálni a legjobb megoldást,
+    text: {
+      en: {
+        tag: "Garden Proiect",
+        hint: `Every space needs a waste bin — let us find the best solution: one that
+         is durable, natural and does its job. Garden Proiect takes on exactly that in
+          your service. Each of these products is made to meet your needs.`,
+      },
+      ro: {
+        tag: "Garden Proiect",
+        hint: `Orice spațiu are nevoie de un coș de gunoi — să găsim cea mai bună soluție:
+         una durabilă, naturală și care își îndeplinește rolul. Garden Proiect își asumă
+          tocmai acest lucru în serviciul dumneavoastră. Fiecare dintre aceste produse este
+          creat pentru a răspunde nevoilor dumneavoastră.`,
+      },
+      hu: {
+        tag: "Garden Proiect",
+        hint: `Szemetesre szükség van, próbáljuk megtalálni a legjobb megoldást,
          ami időt álló, természetes és betőlti a funkcióját. A Garden Proiect erre vállalkozik
-          az önök szolgálatában. Ezek a termékek, mind az ön igényeit igyekeznek kielégíteni.</div>
-      </div>`,
+          az önök szolgálatában. Ezek a termékek, mind az ön igényeit igyekeznek kielégíteni.`,
+      },
+    },
   },
   {
-    // Fills the two empty cells beside the lone bench at the top of page 3.
-    afterId: "bench-carved",
+    // Sits right after the Octagonal Pavilion (the last product of Shelters &
+    // Structures), so it also nudges the following "Fencing & Signage" section
+    // onto page 11. Replace this copy with the real promo when it's ready.
+    afterId: "octagonal-pavilion",
     span: 2,
-    html: `
-      <div class="ad-inner">
-        <div class="ad-tag">Ha pihenni akarsz</div>
-        <div class="ad-hint">Ide azt a szöveget helyezheted el, amely a pihenésre ösztönöz.</div>
-      </div>`,
+    text: {
+      en: {
+        tag: "Made for gathering",
+        hint: `A pavilion is where the garden becomes a place to meet. Garden Proiect
+         builds shelters that last — natural, sturdy, and shaped to your space.`,
+      },
+      ro: {
+        tag: "Făcut pentru a fi împreună",
+        hint: `Un foișor este locul unde grădina devine un loc de întâlnire. Garden Proiect
+         construiește structuri care durează — naturale, solide și adaptate spațiului dumneavoastră.`,
+      },
+      hu: {
+        tag: "A találkozások helye",
+        hint: `A pavilon az a hely, ahol a kert találkozóhellyé válik. A Garden Proiect
+         tartós, természetes és a térhez igazított építményeket készít.`,
+      },
+    },
+  },
+  {
+    // Follows the Solid Wood Bell — the LAST product in the catalog — so this
+    // closing promo sits at the bottom of the final product page (page 18, just
+    // before the Contents page). Swap in the real copy when it's ready.
+    afterId: "solid-wood-bell",
+    span: 2,
+    text: {
+      en: {
+        tag: "Let's build it together",
+        hint: `Found what you were looking for? Tell us about your space and Garden Proiect
+         will craft it — naturally, and to last. Get in touch for a quote.`,
+      },
+      ro: {
+        tag: "Să o construim împreună",
+        hint: `Ați găsit ce căutați? Spuneți-ne despre spațiul dumneavoastră, iar Garden Proiect
+         îl va crea — natural și durabil. Contactați-ne pentru o ofertă.`,
+      },
+      hu: {
+        tag: "Építsük meg együtt",
+        hint: `Megtalálta, amit keresett? Meséljen a teréről, és a Garden Proiect megvalósítja
+         — természetesen és tartósan. Kérjen ajánlatot!`,
+      },
+    },
   },
 ];
+
+// Resolve one ad's markup for a given language. A box with a literal `html`
+// wins (used verbatim); otherwise the `text` row for `lang` is used, falling
+// back to English and then to any defined language so a box never renders empty.
+function adHtml(ad, lang) {
+  if (ad.html) return ad.html;
+  const t = ad.text?.[lang] || ad.text?.en || Object.values(ad.text || {})[0] || {};
+  return `
+      <div class="ad-inner">
+        <div class="ad-tag">${t.tag || ""}</div>
+        <div class="ad-hint">${t.hint || ""}</div>
+      </div>`;
+}
+
+// Build the ADS array for one language: same placement (afterId/span), copy
+// resolved to `lang`. Passed to buildCatalogDom, which only reads `html`.
+const localizedAds = (lang) =>
+  ADS.map((ad) => ({ afterId: ad.afterId, span: ad.span, html: adHtml(ad, lang) }));
 
 // ---- Export-only CSS injected on top of the app's @media print rules -------
 const EXPORT_CSS = `
@@ -164,63 +241,63 @@ const EXPORT_CSS = `
      Chromium's print engine ignores break-inside:avoid on CSS-grid items and
      happily slices a grid row across a page break — a card's photo/name land on
      one page, its price on the next. Table rows are kept intact reliably, so
-     each row of three cards is a tr.pf-row with break-inside:avoid: a row that
-     can't fit at a page foot moves down whole, never cut. Section headings are a
-     full-width tr.pf-head (colspan 3). The 5px cell padding is the inter-card
-     gutter (≈10px between neighbours). border-spacing is avoided — with
-     table-layout:fixed it overflows the row and collapses the columns.
+     each product is a tr.pf-row with break-inside:avoid: a row that can't fit at
+     a page foot moves down whole, never cut. Section headings are a full-width
+     tr.pf-head. border-spacing is avoided — with table-layout:fixed it overflows
+     the row and collapses the column.
 
-     At A4 print width (~794px) the app's @media(max-width:960px) rule would
-     collapse the on-screen grid to 2 columns; the table's colgroup forces a
-     clean 3-up — narrower cards are proportionally shorter (4/3 media scales
-     with width), so more rows fit per page. */
+     The table now has ONE full-width column (colgroup, COLS=1): every product
+     is its own row, rendered as a horizontal card (big photo left, text right —
+     see the one-product-per-row block below), three to an A4 sheet. */
   table.pageframe td { vertical-align: top !important; }
   table.pageframe tr.pf-row { break-inside: avoid !important; }
-  table.pageframe tr.pf-row > td { padding: 4px !important; }
-  /* Card fills its cell so all three in a row share one height. */
-  table.pageframe tr.pf-row > td > .card { height: 100% !important; }
+  table.pageframe tr.pf-row > td { padding: 3mm 0 !important; }
   table.pageframe tr.pf-head { break-inside: avoid !important; break-after: avoid !important; }
   table.pageframe tr.pf-head > td { padding: 6px 5px 5px !important; border: 0 !important; }
   table.pageframe > tbody > tr:first-child.pf-head > td { padding-top: 0 !important; }
   .section-head { margin-bottom: 0 !important; }
-  /* Compact cards so THREE rows fit per A4 sheet (the default 4/3 photo left
-     room for only two, half-emptying every page that ended a section). A shorter
-     photo, tighter body padding/leading, slimmer dividers and smaller inline
-     icons shave enough off each row for a third to fit. */
-  .card { padding: 2mm !important; }
-  .card-media { aspect-ratio: 4/1.75 !important; }
-  .card-body { padding: 5px 4px 0 !important; }
-  .card-name { font-size: 12.5px !important; line-height: 1.08 !important; }
-  .card-code { font-size: 10px !important; margin-top: 1px !important; }
-  .card-row { font-size: 10.5px !important; line-height: 1.28 !important; gap: 6px !important;
-              align-items: flex-start !important; }
-  .card-row svg { width: 15px !important; height: 15px !important; flex: none !important;
-                  margin-top: 1px !important; }
-  .card-dims { font-size: 10px !important; padding-left: 18px !important; margin-top: 3px !important; }
-  .card-dims svg { width: 13px !important; height: 13px !important; }
-  .rule { margin: 4px 0 !important; }
 
-  /* ---- Uniform card zones -------------------------------------------------
-     Every product div is the same size: the title, description and price bands
-     each reserve a FIXED height on every card (the media is already uniform —
-     same width, fixed aspect), so the three bands line up across the whole
-     catalog. Heights are sized to the tallest real content (title ≤2 lines,
-     description ≤5 lines, dims ≤2 lines, price ≤2 lines for the flower box's
-     dual price) and long text is line-clamped, so nothing overflows and shorter
-     cards simply carry blank space. The price is pinned to the bottom so its
-     baseline is identical everywhere. Cards lacking a dimensions line get an
-     empty .card-dims placeholder injected in buildCatalogDom so the band is
-     still reserved. */
-  .card-body { display: flex !important; flex-direction: column !important; }
-  .card-name { min-height: 2.16em !important; margin: 0 !important;
+  /* ---- One product per full-width row: BIG photo (2/3) + text/price (1/3) --
+     The client asked for larger photos, so each product now spans the FULL page
+     width as its own table row, laid out HORIZONTALLY: the photo fills the left
+     two-thirds at the row's full height, and the name / code / description /
+     dimensions / price stack in the right third with the price pinned to the
+     bottom (i.e. below the description). The card is a fixed 83mm tall, which
+     makes THREE rows fit per A4 sheet EVEN on a page that also carries a section
+     heading — heading (~16mm) + 3×(83mm + 6mm gutter) ≈ 283mm stays under the
+     297mm sheet, while a fourth card (≈356mm) cannot — so every page holds three
+     products with no page-break fiddling. (Bump this toward 90mm for even bigger
+     photos, but then heading pages fall back to two products.) */
+  .card { display: flex !important; flex-direction: row !important; align-items: stretch !important;
+          height: 83mm !important; width: 100% !important; padding: 0 !important; overflow: hidden !important; }
+
+  /* Left 2/3 — the enlarged product photo, filling the full row height. Its
+     4/3 aspect-ratio is dropped so the image fills the wide box; object-fit
+     cover keeps it crisp and un-stretched (switch cover to contain if any
+     product photo is being cropped in a way that matters). */
+  .card-media { flex: 0 0 66.666% !important; width: 66.666% !important; height: 83mm !important;
+                aspect-ratio: auto !important; align-self: stretch !important; }
+  .card-media img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
+
+  /* Right 1/3 — the text column. A flex column so the price (.card-foot) can be
+     pinned to the base with margin-top:auto, sitting under the description. */
+  .card-body { flex: 1 1 33.334% !important; width: 33.334% !important; padding: 5mm 5mm 5mm 6mm !important;
+               display: flex !important; flex-direction: column !important; overflow: hidden !important; }
+  .card-name { font-size: 15px !important; line-height: 1.14 !important; margin: 0 !important; min-height: 0 !important;
                display: -webkit-box !important; -webkit-line-clamp: 2 !important;
                -webkit-box-orient: vertical !important; overflow: hidden !important; }
-  .card-row { min-height: 6.4em !important; }
-  .card-row > span { display: -webkit-box !important; -webkit-line-clamp: 5 !important;
+  .card-code { font-size: 11px !important; margin-top: 2px !important; }
+  .card-row { font-size: 12px !important; line-height: 1.36 !important; gap: 8px !important;
+              min-height: 0 !important; align-items: flex-start !important; }
+  .card-row svg { width: 16px !important; height: 16px !important; flex: none !important; margin-top: 1px !important; }
+  .card-row > span { display: -webkit-box !important; -webkit-line-clamp: 6 !important;
                      -webkit-box-orient: vertical !important; overflow: hidden !important; }
-  .card-dims { min-height: 2.6em !important; overflow: hidden !important; }
-  .card-foot { margin-top: auto !important; min-height: 2.4em !important;
-               display: flex !important; align-items: flex-end !important; }
+  .card-dims { font-size: 11px !important; padding-left: 24px !important; margin-top: 4px !important;
+               min-height: 0 !important; overflow: hidden !important; }
+  .card-dims svg { width: 14px !important; height: 14px !important; }
+  .rule { margin: 6px 0 !important; }
+  /* Price pinned to the bottom of the text column (below the description). */
+  .card-foot { margin-top: auto !important; }
 
   /* ---- Advertisement / filler boxes (see the ADS config) ------------------
      An ad cell sits in the same grid row as the products, so it's exactly as
@@ -321,7 +398,10 @@ async function buildCatalogDom(page, logoSvg, labels, ads) {
     //     <tfoot> spacers repeat top and bottom on every product page; the cover
     //     (.hero) stays before it and the Contents page is appended after.
     if (sections.length && !document.querySelector("table.pageframe")) {
-      const COLS = 3;
+      // ONE product per row now (big-photo layout) — a single full-width column.
+      // Cards each take 1 column, so every product lands on its own row; any ad
+      // box (span is clamped to COLS below) becomes a full-width banner row.
+      const COLS = 1;
       const wrap = document.createElement("div");
       wrap.className = "wrap";
       const table = document.createElement("table");
@@ -576,7 +656,7 @@ async function exportLang(browser, gs, lang) {
   await page.addStyleTag({ content: EXPORT_CSS });
   await waitForImages(page);
 
-  const titles = await buildCatalogDom(page, LOGO_SVG, L, ADS);
+  const titles = await buildCatalogDom(page, LOGO_SVG, L, localizedAds(lang));
   console.log(`✓ Built cover + TOC (${titles.length} sections).`);
   await waitForImages(page);
 

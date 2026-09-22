@@ -137,7 +137,7 @@ function CatalogInner() {
             <div className="section-head">
               <h2>{t.section(section.title)}</h2>
               <span className="bar" />
-              <span className="count">{section.products.length} {t.ui("itemsSuffix")}</span>
+              {/* <span className="count">{section.products.length} {t.ui("itemsSuffix")}</span> */}
             </div>
             <div className="grid">
               {section.products.map((p) => (
