@@ -143,8 +143,14 @@ const EXPORT_CSS = `
      table header/footer: a <thead>/<tfoot> spacer is re-drawn by the print
      engine at the top and bottom of EVERY page the product table spans, and
      — unlike a CSS margin — it reserves real cream space that pushes the
-     first card row down even on pages that begin mid-grid. */
-  @page { margin: 0 !important; size: A4; }
+     first card row down even on pages that begin mid-grid.
+
+     EXCEPTION — a 12mm BOTTOM margin is reserved for the print footer (the
+     green "ground" mound + centred page number), which Chromium paints on every
+     sheet via the footerTemplate in renderPdf(). The footer template fills that
+     band edge-to-edge with the cream colour first, so no white shows; the left,
+     right and top edges still bleed full. */
+  @page { margin: 0 0 12mm 0 !important; size: A4; }
 
   /* All product cards live in this ONE table at export time (see the DOM notes
      in buildCatalogDom). A single table — never a table nested in another
@@ -169,7 +175,7 @@ const EXPORT_CSS = `
           background: linear-gradient(180deg, var(--cream), var(--cream-2)) !important; }
   .hero-grid { grid-template-columns: 1.05fr 0.95fr !important;
                padding: 24px 0 20px !important; gap: 34px !important;
-               align-items: center !important; min-height: 250mm; align-content: center; }
+               align-items: center !important; min-height: 226mm; align-content: center; }
   .hero-media { max-width: none !important; }
   .hero .wrap { padding-left: 16mm !important; padding-right: 12mm !important; }
   .hero-title { font-size: 60px !important; }
@@ -177,9 +183,26 @@ const EXPORT_CSS = `
   .hero-media .frame { box-shadow: none !important; aspect-ratio: 3/4 !important;
                        max-height: 150mm !important; margin: 0 auto !important; }
 
-  /* Injected brand lockup (full logo) on the cover */
-  .cover-brand { margin-bottom: 28px; }
-  .cover-logo { height: 104px; width: auto; display: block; }
+  /* -------- Full-width white header band on the COVERS (front + back) --------
+     A long white strip carrying the tree mark + "Garden Proiect" wordmark in
+     the brand's dark green (#14683e, the dominant colour sampled from the logo).
+     It sits flush to the top of the front cover (page 1) — REPLACING the old
+     stacked logo lockup, moved up here — and again, centred, on the closing
+     page. box-sizing:border-box so its side padding never overflows. */
+  .cover-banner { box-sizing: border-box; width: 100%; background: #fff;
+                  display: flex; align-items: center; justify-content: center;
+                  gap: 22px; padding: 11mm 16mm; text-align: center;
+                  border-bottom: 1px solid rgba(20,104,62,0.18); }
+  .cover-banner .cb-mark { height: 22mm; width: auto; display: block; }
+  .cover-banner .cb-title { font-family: var(--font-poppins), sans-serif;
+                            -webkit-text-stroke: 3px #9fae8a;
+                            font-weight: 800; font-size: 56px; line-height: 1;
+                            letter-spacing: 0.1em; color: #0c4127; margin: 0; }
+
+  /* Hide the phone / website / Facebook chips on the FRONT cover (page 1). The
+     closing page's cloned copy (.closing-contact) lives outside .hero, so it is
+     unaffected and still shows the contact details on the back cover. */
+  .hero .hero-contact { display: none !important; }
 
   /* Injected VAT note folded onto the cover */
   .cover-vat { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px;
@@ -212,20 +235,20 @@ const EXPORT_CSS = `
      width as its own table row, laid out HORIZONTALLY: the photo fills the left
      two-thirds at the row's full height, and the name / code / description /
      dimensions / price stack in the right third with the price pinned to the
-     bottom (i.e. below the description). The card is a fixed 83mm tall, which
+     bottom (i.e. below the description). The card is a fixed 80mm tall, which
      makes THREE rows fit per A4 sheet EVEN on a page that also carries a section
-     heading — heading (~16mm) + 3×(83mm + 6mm gutter) ≈ 283mm stays under the
-     297mm sheet, while a fourth card (≈356mm) cannot — so every page holds three
-     products with no page-break fiddling. (Bump this toward 90mm for even bigger
-     photos, but then heading pages fall back to two products.) */
+     heading — heading (~16mm) + 3×(80mm + 6mm gutter) = 274mm stays under the
+     285mm of usable height left once the 12mm footer band is reserved, while a
+     fourth card cannot — so every page holds three products with no page-break
+     fiddling. (Trimmed from 83mm to make room for the page-number footer.) */
   .card { display: flex !important; flex-direction: row !important; align-items: stretch !important;
-          height: 83mm !important; width: 100% !important; padding: 0 !important; overflow: hidden !important; }
+          height: 80mm !important; width: 100% !important; padding: 0 !important; overflow: hidden !important; }
 
   /* Left 2/3 — the enlarged product photo, filling the full row height. Its
      4/3 aspect-ratio is dropped so the image fills the wide box; object-fit
      cover keeps it crisp and un-stretched (switch cover to contain if any
      product photo is being cropped in a way that matters). */
-  .card-media { flex: 0 0 66.666% !important; width: 66.666% !important; height: 83mm !important;
+  .card-media { flex: 0 0 66.666% !important; width: 66.666% !important; height: 80mm !important;
                 aspect-ratio: auto !important; align-self: stretch !important; }
   .card-media img { width: 100% !important; height: 100% !important; object-fit: cover !important; }
 
@@ -283,7 +306,7 @@ const EXPORT_CSS = `
   td.ad-box .ad-imgwrap { display: flex; align-items: center; justify-content: center; width: 100%; }
   td.ad-box .ad-img { max-width: 100%; width: auto; display: block; border-radius: 10px; }
 
-  /* -------- Table of Contents (last page) -------- */
+  /* -------- Table of Contents (second-to-last page) -------- */
   .toc-page { break-before: page !important; break-inside: avoid !important;
               padding: 30mm 0 0 !important; }
   .toc-page .toc-kicker { color: var(--olive); font-weight: 700; letter-spacing: 0.16em;
@@ -301,11 +324,29 @@ const EXPORT_CSS = `
                         transform: translateY(-4px); }
   .toc-list .toc-num { font-family: var(--font-poppins), sans-serif; font-weight: 700;
                        font-size: 17px; color: var(--green); min-width: 28px; text-align: right; }
+
+  /* -------- Closing / back-cover page (the very last sheet) -----------------
+     A full A4 cream page: the white header band + contact chips are anchored at
+     the TOP, and a large tree mark is centred in the MIDDLE of the sheet
+     (absolutely positioned so it centres on the page, not on the leftover space
+     below the header). */
+  /* min-height is the USABLE sheet height (297mm − the 12mm footer band); a full
+     297mm here would overflow past the reserved band onto a blank extra page. */
+  .closing-page { break-before: page !important; break-inside: avoid !important;
+                  position: relative; min-height: 282mm; display: flex;
+                  flex-direction: column; align-items: center; justify-content: flex-start; }
+  .closing-page .closing-contact { display: flex; flex-wrap: wrap; gap: 12px;
+                  justify-content: center; margin-top: 40px; padding: 0 16mm; }
+  .closing-page .closing-mark { position: absolute; top: 50%; left: 50%;
+                  transform: translate(-50%, -50%); height: 90mm; width: auto; display: block; }
 `;
 
 // Garden Proiect brand — full logo lockup (tree + wordmark), transparent PNG
 // generated by scripts/make-logo-assets.mjs. Served from /public.
-const LOGO_SVG = `<img src="/logo-full.png" alt="Garden Proiect" class="cover-logo" />`;
+// The white header-band contents for the covers: the tree mark + wordmark text.
+const BANNER_HTML =
+  `<img src="/logo-mark.png" alt="" class="cb-mark" />` +
+  `<span class="cb-title">GARDEN PROIECT</span>`;
 
 async function waitForImages(page) {
   await page.evaluate(async () => {
@@ -325,28 +366,33 @@ async function waitForImages(page) {
   });
 }
 
-// Build the cover injections + the TOC page (with placeholder page numbers).
-async function buildCatalogDom(page, logoSvg, labels, ads) {
-  return page.evaluate(({ logo, labels, ads }) => {
-    const heroLeft = document.querySelector(".hero-grid > div");
-    const vatText =
-      document.querySelector(".terms-vat")?.textContent?.trim() || "Prices do not include VAT.";
+// Build the cover injections + the TOC page + the closing page (with placeholder
+// page numbers on the TOC).
+async function buildCatalogDom(page, banner, labels, ads) {
+  return page.evaluate(({ banner, labels, ads }) => {
+    // A fresh white header band (tree mark + "Garden Proiect"). Built per-call
+    // because the same node can't live on both the cover and the closing page.
+    const makeBanner = () => {
+      const b = document.createElement("div");
+      b.className = "cover-banner";
+      b.innerHTML = banner;
+      return b;
+    };
 
-    // 1) Brand wordmark at the top of the cover (topbar is hidden).
-    if (heroLeft && !heroLeft.querySelector(".cover-brand")) {
-      const brand = document.createElement("div");
-      brand.className = "cover-brand";
-      brand.innerHTML = logo;
-      heroLeft.insertBefore(brand, heroLeft.firstChild);
+    // 1) White header band across the top of the cover — this carries the logo
+    //    (moved up from the old in-column lockup, which is no longer injected).
+    const hero = document.querySelector(".hero");
+    if (hero && !hero.querySelector(".cover-banner")) {
+      hero.insertBefore(makeBanner(), hero.firstChild);
     }
 
     // 2) VAT note folded onto the cover.
-    if (heroLeft && !heroLeft.querySelector(".cover-vat")) {
-      const vat = document.createElement("div");
-      vat.className = "cover-vat";
-      vat.textContent = vatText;
-      heroLeft.appendChild(vat);
-    }
+    // if (heroLeft && !heroLeft.querySelector(".cover-vat")) {
+    //   const vat = document.createElement("div");
+    //   vat.className = "cover-vat";
+    //   vat.textContent = vatText;
+    //   heroLeft.appendChild(vat);
+    // }
 
     // 3) Collect the real, rendered product-section titles (exclude gallery).
     const sections = Array.from(document.querySelectorAll(".section")).filter(
@@ -486,8 +532,30 @@ async function buildCatalogDom(page, logoSvg, labels, ads) {
       document.body.appendChild(toc);
     }
 
+    // 5) Closing / back-cover page — the very last sheet. The white header band
+    //    (tree mark + "Garden Proiect") and the contact chips cloned from the
+    //    cover sit at the TOP of the page; a large tree mark is centred in the
+    //    middle of the sheet.
+    if (!document.querySelector(".closing-page")) {
+      const closing = document.createElement("section");
+      closing.className = "closing-page";
+      closing.appendChild(makeBanner());
+      const heroContact = document.querySelector(".hero-contact");
+      if (heroContact) {
+        const contact = heroContact.cloneNode(true);
+        contact.classList.add("closing-contact");
+        closing.appendChild(contact);
+      }
+      const mark = document.createElement("img");
+      mark.src = "/closing-mark.png";
+      mark.alt = "";
+      mark.className = "closing-mark";
+      closing.appendChild(mark);
+      document.body.appendChild(closing);
+    }
+
     return titles;
-  }, { logo: logoSvg, labels, ads });
+  }, { banner, labels, ads });
 }
 
 function pdfPageText(file, pageNum) {
@@ -528,16 +596,45 @@ function findSectionPages(file, titles) {
   });
 }
 
+// ---- Print footer: the green "ground" mound + centred page number ----------
+// Painted by Chromium into the 12mm bottom margin band of EVERY sheet (see the
+// @page rule in EXPORT_CSS). Notes on the Chromium header/footer engine:
+//   • Only the special classes (pageNumber, totalPages, …) get live values, so
+//     the number is a <span class="pageNumber">.
+//   • The template renders in an isolated context with a TINY default font and
+//     no inherited styles — every size/colour is set inline here.
+//   • Backgrounds print only with -webkit-print-color-adjust:exact, set below.
+// The band is filled cream first so no white paper shows even if the SVG fails;
+// the mound is a shallow full-width lens (preserveAspectRatio:none stretches it)
+// in the catalog's soft green, with the page number in white on its fuller
+// middle. HEADER is an empty div so Chromium doesn't print its default title.
+const FOOTER_TEMPLATE = `
+  <div style="position:fixed; left:0; right:0; bottom:0; width:100%; height:12mm; margin:0; padding:0;
+              background:#efeadd; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+              font-family:'Poppins','Helvetica Neue',Arial,sans-serif;">
+    <svg viewBox="0 0 1200 70" preserveAspectRatio="none"
+         style="position:absolute; left:0; bottom:0; width:100%; height:12mm; display:block;">
+      <path d="M0,55 C400,18 800,18 1200,55 C800,65 400,65 0,55 Z" fill="#6aa373"></path>
+    </svg>
+    <span class="pageNumber"
+          style="position:absolute; left:0; right:0; bottom:2mm; text-align:center;
+                 font-size:9px; font-weight:700; color:#ffffff;"></span>
+  </div>`;
+
 async function renderPdf(page) {
   return page.pdf({
     printBackground: true,
-    // Honour the injected `@page { margin: 0; size: A4 }` so the cream
-    // html/body background bleeds to every paper edge (no white margin). The
-    // per-page top/bottom cream breathing room is supplied by the repeating
-    // pageframe <thead>/<tfoot> spacers, not by a paper margin. NOTE: this
-    // Chromium ignores the page.pdf({margin}) option when the page CSS has an
-    // @page margin, so the margin MUST be controlled via @page in EXPORT_CSS.
+    // Honour the injected `@page { size:A4; margin:0 0 12mm 0 }` so the cream
+    // html/body background bleeds to the left/right/top paper edges (no white
+    // margin) while a 12mm bottom band is reserved for the footer below. The
+    // per-page top cream breathing room is still supplied by the repeating
+    // pageframe <thead> spacer. NOTE: Chromium ignores the page.pdf({margin})
+    // option when the page CSS has an @page margin, so margins MUST be set via
+    // @page in EXPORT_CSS — the footer only draws INTO the band @page reserves.
     preferCSSPageSize: true,
+    displayHeaderFooter: true,
+    headerTemplate: `<div></div>`,
+    footerTemplate: FOOTER_TEMPLATE,
   });
 }
 
@@ -628,7 +725,7 @@ async function exportLang(browser, gs, lang) {
   await page.addStyleTag({ content: EXPORT_CSS });
   await waitForImages(page);
 
-  const titles = await buildCatalogDom(page, LOGO_SVG, L, localizedAds(lang));
+  const titles = await buildCatalogDom(page, BANNER_HTML, L, localizedAds(lang));
   console.log(`✓ Built cover + TOC (${titles.length} sections).`);
   await waitForImages(page);
 
