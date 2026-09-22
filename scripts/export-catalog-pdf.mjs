@@ -89,7 +89,7 @@ const ADS = [
     // the bottom of the Waste Baskets page (language-independent, so `html`).
     afterId: "waste-basket-2490",
     span: 2,
-    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/trashcan-adv.jpg" alt="" style="height:88mm" /></div>`,
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/flowergarden.jpg" alt="" style="height:88mm" /></div>`,
   },
   {
     // Sits right after the Octagonal Pavilion (the last product of Shelters &
@@ -97,7 +97,7 @@ const ADS = [
     // onto page 11. Replace this copy with the real promo when it's ready.
     afterId: "octagonal-pavilion",
     span: 2,
-    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/i-026-290.png" alt="" style="height:82mm" /></div>`,
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/garden.jpg" alt="" style="height:82mm" /></div>`,
   },
   {
     // Follows the Solid Wood Bell — the LAST product in the catalog — so this
@@ -105,7 +105,7 @@ const ADS = [
     // before the Contents page). Swap in the real copy when it's ready.
     afterId: "solid-wood-bell",
     span: 2,
-    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/i-026-286.png" alt="" style="height:82mm" /></div>`,
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/flowers.jpeg" alt="" style="height:82mm" /></div>`,
   },
 ];
 
