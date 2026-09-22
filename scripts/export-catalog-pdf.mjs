@@ -85,29 +85,11 @@ const rawPath = (lang) => resolve(REPO, `.catalog-raw-${lang}.pdf`); // uncompre
 //   the Waste Baskets page.
 const ADS = [
   {
+    // Full-size image filler under the waste baskets — fills the blank space at
+    // the bottom of the Waste Baskets page (language-independent, so `html`).
     afterId: "waste-basket-2490",
     span: 2,
-    text: {
-      en: {
-        tag: "Garden Proiect",
-        hint: `Every space needs a waste bin — let us find the best solution: one that
-         is durable, natural and does its job. Garden Proiect takes on exactly that in
-          your service. Each of these products is made to meet your needs.`,
-      },
-      ro: {
-        tag: "Garden Proiect",
-        hint: `Orice spațiu are nevoie de un coș de gunoi — să găsim cea mai bună soluție:
-         una durabilă, naturală și care își îndeplinește rolul. Garden Proiect își asumă
-          tocmai acest lucru în serviciul dumneavoastră. Fiecare dintre aceste produse este
-          creat pentru a răspunde nevoilor dumneavoastră.`,
-      },
-      hu: {
-        tag: "Garden Proiect",
-        hint: `Szemetesre szükség van, próbáljuk megtalálni a legjobb megoldást,
-         ami időt álló, természetes és betőlti a funkcióját. A Garden Proiect erre vállalkozik
-          az önök szolgálatában. Ezek a termékek, mind az ön igényeit igyekeznek kielégíteni.`,
-      },
-    },
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/trashcan-adv.jpg" alt="" style="height:88mm" /></div>`,
   },
   {
     // Sits right after the Octagonal Pavilion (the last product of Shelters &
@@ -115,23 +97,7 @@ const ADS = [
     // onto page 11. Replace this copy with the real promo when it's ready.
     afterId: "octagonal-pavilion",
     span: 2,
-    text: {
-      en: {
-        tag: "Made for gathering",
-        hint: `A pavilion is where the garden becomes a place to meet. Garden Proiect
-         builds shelters that last — natural, sturdy, and shaped to your space.`,
-      },
-      ro: {
-        tag: "Făcut pentru a fi împreună",
-        hint: `Un foișor este locul unde grădina devine un loc de întâlnire. Garden Proiect
-         construiește structuri care durează — naturale, solide și adaptate spațiului dumneavoastră.`,
-      },
-      hu: {
-        tag: "A találkozások helye",
-        hint: `A pavilon az a hely, ahol a kert találkozóhellyé válik. A Garden Proiect
-         tartós, természetes és a térhez igazított építményeket készít.`,
-      },
-    },
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/i-026-290.png" alt="" style="height:82mm" /></div>`,
   },
   {
     // Follows the Solid Wood Bell — the LAST product in the catalog — so this
@@ -139,23 +105,7 @@ const ADS = [
     // before the Contents page). Swap in the real copy when it's ready.
     afterId: "solid-wood-bell",
     span: 2,
-    text: {
-      en: {
-        tag: "Let's build it together",
-        hint: `Found what you were looking for? Tell us about your space and Garden Proiect
-         will craft it — naturally, and to last. Get in touch for a quote.`,
-      },
-      ro: {
-        tag: "Să o construim împreună",
-        hint: `Ați găsit ce căutați? Spuneți-ne despre spațiul dumneavoastră, iar Garden Proiect
-         îl va crea — natural și durabil. Contactați-ne pentru o ofertă.`,
-      },
-      hu: {
-        tag: "Építsük meg együtt",
-        hint: `Megtalálta, amit keresett? Meséljen a teréről, és a Garden Proiect megvalósítja
-         — természetesen és tartósan. Kérjen ajánlatot!`,
-      },
-    },
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/i-026-286.png" alt="" style="height:82mm" /></div>`,
   },
 ];
 
@@ -316,6 +266,19 @@ const EXPORT_CSS = `
             letter-spacing: 0.18em; text-transform: uppercase; color: var(--olive); }
   .ad-hint { font-family: var(--font-poppins), sans-serif; font-weight: 600; font-size: 16px;
              color: var(--green-deep); margin-top: 8px; }
+
+  /* ---- Image filler ads (an <img> instead of a text box) -------------------
+     Used when an ADS entry sets html to an <img class="ad-img">. The .ad-imgwrap
+     is a FULL-WIDTH darker (sage) panel — the same width and corner radius as a
+     product card — so the ad reads as a product-width block; the image is
+     centred on it and sized by the inline height set per ad (e.g.
+     style="height:88mm"), which keeps the panel from spilling onto the next
+     page. No !important on the height here, so the per-ad inline height wins. */
+  td.ad-box .ad-imgwrap { display: flex; align-items: center; justify-content: center; width: 100%;
+                          box-sizing: border-box; background: var(--sage); border-radius: var(--radius);
+                          padding: 5mm; }
+  td.ad-box .ad-img { max-width: 100%; width: auto; display: block; border-radius: 10px;
+                      box-shadow: 0 10px 26px -20px rgba(31,52,35,0.5); }
 
   /* -------- Table of Contents (last page) -------- */
   .toc-page { break-before: page !important; break-inside: avoid !important;
