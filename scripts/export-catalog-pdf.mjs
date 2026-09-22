@@ -339,6 +339,9 @@ const EXPORT_CSS = `
                   justify-content: center; margin-top: 40px; padding: 0 16mm; }
   .closing-page .closing-mark { position: absolute; top: 50%; left: 50%;
                   transform: translate(-50%, -50%); height: 90mm; width: auto; display: block; }
+  /* On the CLOSING page only, mirror the "G" of the wordmark so it faces the
+     other way (the cover keeps it normal — this rule is scoped to .closing-page). */
+  .closing-page .cb-title .cb-g { display: inline-block; transform: scaleX(-1); }
 `;
 
 // Garden Proiect brand — full logo lockup (tree + wordmark), transparent PNG
@@ -346,7 +349,7 @@ const EXPORT_CSS = `
 // The white header-band contents for the covers: the tree mark + wordmark text.
 const BANNER_HTML =
   `<img src="/logo-mark.png" alt="" class="cb-mark" />` +
-  `<span class="cb-title">GARDEN PROIECT</span>`;
+  `<span class="cb-title"><span class="cb-g">G</span>ARDEN PROIECT</span>`;
 
 async function waitForImages(page) {
   await page.evaluate(async () => {
