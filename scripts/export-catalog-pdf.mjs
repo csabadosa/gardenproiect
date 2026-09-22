@@ -249,6 +249,13 @@ const EXPORT_CSS = `
   /* Price pinned to the bottom of the text column (below the description). */
   .card-foot { margin-top: auto !important; }
 
+  /* Every 2nd product mirrors: photo to the RIGHT, text/price to the LEFT. Only
+     the row direction flips — the text stays left-aligned and the price stays
+     pinned to the bottom. The body's inner gutter is mirrored so the text keeps
+     an even margin from the page edge on the flipped side too. */
+  .card.card-flip { flex-direction: row-reverse !important; }
+  .card.card-flip .card-body { padding: 5mm 6mm 5mm 5mm !important; }
+
   /* ---- Advertisement / filler boxes (see the ADS config) ------------------
      An ad cell sits in the same grid row as the products, so it's exactly as
      tall as a product card. .ad-inner fills the cell; restyle it (or replace
@@ -268,17 +275,13 @@ const EXPORT_CSS = `
              color: var(--green-deep); margin-top: 8px; }
 
   /* ---- Image filler ads (an <img> instead of a text box) -------------------
-     Used when an ADS entry sets html to an <img class="ad-img">. The .ad-imgwrap
-     is a FULL-WIDTH darker (sage) panel — the same width and corner radius as a
-     product card — so the ad reads as a product-width block; the image is
-     centred on it and sized by the inline height set per ad (e.g.
-     style="height:88mm"), which keeps the panel from spilling onto the next
-     page. No !important on the height here, so the per-ad inline height wins. */
-  td.ad-box .ad-imgwrap { display: flex; align-items: center; justify-content: center; width: 100%;
-                          box-sizing: border-box; background: var(--sage); border-radius: var(--radius);
-                          padding: 5mm; }
-  td.ad-box .ad-img { max-width: 100%; width: auto; display: block; border-radius: 10px;
-                      box-shadow: 0 10px 26px -20px rgba(31,52,35,0.5); }
+     Used when an ADS entry sets html to an <img class="ad-img">. Just the image,
+     centred on the cream page (no backing panel) — sized by the inline height
+     set per ad (e.g. style="height:88mm"), which keeps it from spilling onto the
+     next page. No !important on the height here, so the per-ad inline height
+     wins. */
+  td.ad-box .ad-imgwrap { display: flex; align-items: center; justify-content: center; width: 100%; }
+  td.ad-box .ad-img { max-width: 100%; width: auto; display: block; border-radius: 10px; }
 
   /* -------- Table of Contents (last page) -------- */
   .toc-page { break-before: page !important; break-inside: avoid !important;
@@ -388,7 +391,11 @@ async function buildCatalogDom(page, logoSvg, labels, ads) {
       table.appendChild(tfoot);
 
       const tb = document.createElement("tbody");
-      // For each section: a full-width heading row, then rows of up to 3 cards.
+      // Running product index across ALL sections, so EVERY 2ND product gets the
+      // `card-flip` class (photo swaps to the right, text/price to the left — see
+      // .card.card-flip in EXPORT_CSS). Counts products only, never ad boxes.
+      let prodN = 0;
+      // For each section: a full-width heading row, then one product per row.
       sections.forEach((s) => {
         const head = s.querySelector(".section-head");
         if (head) {
@@ -425,6 +432,8 @@ async function buildCatalogDom(page, logoSvg, labels, ads) {
         };
         const tokens = [];
         cards.forEach((card) => {
+          if (prodN % 2 === 1) card.classList.add("card-flip"); // every 2nd product mirrors
+          prodN++;
           tokens.push({ type: "card", el: card });
           const ad = (ads || []).find((a) => a.afterId === idOf(card));
           if (ad) tokens.push({ type: "ad", span: Math.min(Math.max(ad.span || 1, 1), COLS), html: ad.html });
