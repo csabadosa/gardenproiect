@@ -124,6 +124,10 @@
             "title": "Mérleghinta",
             "code": "LP02"
         },
+        "Garden swing 3": {
+            "title": "Mérleghinta",
+            "code": "-"
+        },
         "Swing": {
             "title": "Hinta",
             "code": "-"
@@ -199,7 +203,7 @@
     },
     "ui": {
         "catalogWord": "KATALÓGUS",
-        "year": "2026",
+        "year": "2026-2027",
         "heroLead": "Kézzel készített tömörfa kerti bútorok, virágládák, pavilonok és játszótéri szerkezetek — tartósra építve, az Ön által választott színben.",
         "warrantyKicker": "Garancia és feltételek",
         "warrantyTitle": "Tömörfából készült, 5 év garanciával",
@@ -268,6 +272,7 @@
         "Width 180 · Height 240 cm": "Szélesség 180 · Magasság 240 cm",
         "Length 148 · Height 44 cm": "Hossz 148 · Magasság 44 cm",
         "Length 400 · Height 50 cm": "Hossz 400 · Magasság 50 cm",
+        "Length 250 · Height 70 cm": "Hossz 250 · Magasság 70 cm",
         "Seat 46 × 34 cm": "Ülőke 46 × 34 cm",
         "Seat 46 × 34 · Height 35 cm": "Ülőke 46 × 34 · Magasság 35 cm",
         "Length 200 · Depth 50 · Height 80 cm": "Hossz 200 · Mélység 50 · Magasság 80 cm",

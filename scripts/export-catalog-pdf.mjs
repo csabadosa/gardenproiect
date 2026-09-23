@@ -175,20 +175,29 @@ const EXPORT_CSS = `
   table.pageframe .pf-spacer { height: 4mm; }
 
   /* -------- COVER (page 1) -------- */
-  /* Force the two-column cover layout: at A4 print width (~794px) the app's
-     responsive @media(max-width:960px) rule would otherwise collapse the hero
-     to one column and spill it onto a second page. */
+  /* Single-column STACKED cover: white header band (injected .cover-banner)
+     on top, then the full-page-wide welcome photo, then "CATALOG 2026", then
+     the lead paragraph — each below the last. (Was a two-column layout with the
+     photo on the right; the client asked to move the title + text under a
+     full-width photo.) */
   .hero { break-after: page !important; break-inside: avoid !important;
           background: linear-gradient(180deg, var(--cream), var(--cream-2)) !important; }
-  .hero-grid { grid-template-columns: 1.05fr 0.95fr !important;
-               padding: 24px 0 20px !important; gap: 34px !important;
-               align-items: center !important; min-height: 226mm; align-content: center; }
-  .hero-media { max-width: none !important; }
+  .hero-grid { grid-template-columns: 1fr !important;
+               padding: 0 0 20px !important; gap: 26px !important;
+               align-items: stretch !important; min-height: 226mm; align-content: start; }
   .hero .wrap { padding-left: 16mm !important; padding-right: 12mm !important; }
+  /* Photo first and full-bleed to the page edges — matching the white header
+     band's width. Negative side margins cancel the wrap's side padding. */
+  .hero-media { order: -1 !important; max-width: none !important;
+                margin: 0 -12mm 0 -16mm !important; }
+  .hero-media .frame { box-shadow: none !important; border-radius: 0 !important;
+                       aspect-ratio: 16/10 !important; max-height: 150mm !important;
+                       width: 100% !important; margin: 0 !important; }
+  .hero-media .frame img { width: 100% !important; height: 100% !important;
+                           object-fit: cover !important; }
+  /* Title + lead now sit BELOW the photo, still indented by the wrap padding. */
   .hero-title { font-size: 60px !important; }
-  .hero-lead { font-size: 16px !important; max-width: 460px !important; }
-  .hero-media .frame { box-shadow: none !important; aspect-ratio: 3/4 !important;
-                       max-height: 150mm !important; margin: 0 auto !important; }
+  .hero-lead { font-size: 19px !important; max-width: 560px !important; }
 
   /* -------- Full-width white header band on the COVERS (front + back) --------
      A long white strip carrying the tree mark + "Garden Proiect" wordmark in

@@ -124,6 +124,10 @@
             "title": "Balansoar",
             "code": "LP02"
         },
+        "Garden swing 3": {
+            "title": "Balansoar",
+            "code": "-"
+        },
         "Swing": {
             "title": "Leagăn",
             "code": "-"
@@ -199,7 +203,7 @@
     },
     "ui": {
         "catalogWord": "CATALOG",
-        "year": "2026",
+        "year": "2026-2027",
         "heroLead": "Mobilier de grădină din lemn masiv lucrat manual, jardiniere, foișoare și structuri de joacă — construite să reziste, finisate în culorile alese de dumneavoastră.",
         "warrantyKicker": "Garanție și termeni",
         "warrantyTitle": "Fabricat din lemn masiv, garantat 5 ani",
@@ -268,6 +272,7 @@
         "Width 180 · Height 240 cm": "Lățime 180 · Înălțime 240 cm",
         "Length 148 · Height 44 cm": "Lungime 148 · Înălțime 44 cm",
         "Length 400 · Height 50 cm": "Lungime 400 · Înălțime 50 cm",
+        "Length 250 · Height 70 cm": "Lungime 250 · Înălțime 70 cm",
         "Seat 46 × 34 cm": "Șezut 46 × 34 cm",
         "Seat 46 × 34 · Height 35 cm": "Șezut 46 × 34 · Înălțime 35 cm",
         "Length 200 · Depth 50 · Height 80 cm": "Lungime 200 · Adâncime 50 · Înălțime 80 cm",

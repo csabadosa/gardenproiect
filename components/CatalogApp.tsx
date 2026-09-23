@@ -110,7 +110,7 @@ function CatalogInner() {
           <div className="hero-media">
             <div className="frame">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/cover.png" alt="Garden bench in a landscaped park" />
+              <img src="/welcome_page.jpeg" alt="Garden Proiect welcome" />
             </div>
           </div>
         </div>

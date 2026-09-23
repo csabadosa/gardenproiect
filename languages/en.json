@@ -124,6 +124,10 @@
             "title": "Seesaw",
             "code": "LP02"
         },
+        "Garden swing 3": {
+            "title": "Seesaw",
+            "code": "-"
+        },
         "Swing": {
             "title": "Swing",
             "code": "-"
@@ -199,7 +203,7 @@
     },
     "ui": {
         "catalogWord": "CATALOG",
-        "year": "2026",
+        "year": "2026-2027",
         "heroLead": "Handcrafted solid-wood garden furniture, planters, shelters and playground structures — built to last, finished in the colors you choose.",
         "warrantyKicker": "Warranty & Terms",
         "warrantyTitle": "Made from solid wood, guaranteed for 5 years",
@@ -268,6 +272,7 @@
         "Width 180 · Height 240 cm": "Width 180 · Height 240 cm",
         "Length 148 · Height 44 cm": "Length 148 · Height 44 cm",
         "Length 400 · Height 50 cm": "Length 400 · Height 50 cm",
+        "Length 250 · Height 70 cm": "Length 250 · Height 70 cm",
         "Seat 46 × 34 cm": "Seat 46 × 34 cm",
         "Seat 46 × 34 · Height 35 cm": "Seat 46 × 34 · Height 35 cm",
         "Length 200 · Depth 50 · Height 80 cm": "Length 200 · Depth 50 · Height 80 cm",
