@@ -2,203 +2,199 @@
     "benches": {
         "round bench": {
             "title": "Round bench",
-            "code": "IC06"
+            "code": "GPBS01"
         },
         "bench": {
             "title": "Bench",
-            "code": "BL01"
+            "code": "GPBS02"
         },
         "bench 2": {
             "title": "Bench",
-            "code": "IC01"
+            "code": "GPBS03"
         },
         "bench 3": {
             "title": "Bench",
-            "code": "ST01"
+            "code": "GPBS04"
         },
         "bench 4": {
             "title": "Bench",
-            "code": "MI01"
+            "code": "GPBS05"
         },
         "bench 5": {
             "title": "Bench",
-            "code": "MI02"
+            "code": "GPBS06"
         },
         "bench 6": {
             "title": "Bench",
-            "code": "IC02"
+            "code": "GPBS07"
         },
         "bench with flowers": {
             "title": "Bench with planter",
-            "code": "-"
+            "code": "GPBS08"
         },
         "bench with bike rack": {
             "title": "Bench with bike rack",
-            "code": "-"
+            "code": "GPBS09"
         },
         "bench 7": {
             "title": "Bench",
-            "code": "-"
+            "code": "GPBS10"
         },
         "garbage bin": {
             "title": "Waste basket",
-            "code": "-"
+            "code": "GPWB01"
         },
         "garbage bin 2": {
             "title": "Round Roofed Waste Basket",
-            "code": "IB01"
+            "code": "GPWB02"
         },
         "garbage bin 3": {
             "title": "Square Roofed Waste Basket",
-            "code": "-"
+            "code": "GPWB03"
         },
         "garbage bin 4": {
             "title": "Waste basket",
-            "code": "MB01"
+            "code": "GPWB04"
         },
         "flower pot": {
             "title": "Carved flower box",
-            "code": "LJ03"
+            "code": "GPPB01"
         },
         "flower pot 2": {
             "title": "Flower box",
-            "code": "LJ01"
-        },
-        "flower pot 3": {
-            "title": "Carved flower box",
-            "code": "LJ02"
+            "code": "GPPB02"
         },
         "well with a water wheel": {
             "title": "Water wheel well",
-            "code": "KK01"
+            "code": "GPPB03"
         },
         "sun lounger": {
             "title": "Garden sun lounger",
-            "code": "SU4"
+            "code": "GPTS01"
         },
         "round table with benches": {
             "title": "Round bench and table",
-            "code": "IC60"
+            "code": "GPTS02"
         },
         "table": {
             "title": "Table",
-            "code": "ICM01"
+            "code": "GPTS03"
         },
         "chess table with two benches": {
             "title": "Chess table with two benches",
-            "code": "SA01"
+            "code": "GPTS04"
         },
         "bus station": {
             "title": "Bus stop shelter",
-            "code": "BM02"
+            "code": "GPSS01"
         },
         "bus station 2": {
             "title": "Bus stop shelter",
-            "code": "BM01"
-        },
-        "bicycle rack": {
-            "title": "Bicycle rack",
-            "code": "BT01"
-        },
-        "solid wood fence": {
-            "title": "Solid wood fence",
-            "code": "-"
-        },
-        "Info station": {
-            "title": "Information board",
-            "code": "-"
+            "code": "GPSS02"
         },
         "Secler gate": {
             "title": "Székely gate",
-            "code": "SZ01"
+            "code": "GPSS03"
         },
         "Octagonal pavilon": {
             "title": "Octagonal pavilion",
-            "code": "PAC08"
-        },
-        "Garden swing": {
-            "title": "Seesaw",
-            "code": "LP01"
-        },
-        "Garden swing 2": {
-            "title": "Seesaw",
-            "code": "LP02"
-        },
-        "Garden swing 3": {
-            "title": "Seesaw",
-            "code": "-"
-        },
-        "Swing": {
-            "title": "Swing",
-            "code": "-"
-        },
-        "Big swing": {
-            "title": "Large swing",
-            "code": "-"
-        },
-        "Child swing": {
-            "title": "Children's swing",
-            "code": "-"
-        },
-        "Hexagonal sandbox": {
-            "title": "Hexagonal sandpit",
-            "code": "HO06"
-        },
-        "Hexagonal climbing frame": {
-            "title": "Hexagonal climbing frame",
-            "code": "MF01"
-        },
-        "Wooden ship": {
-            "title": "Wooden boat",
-            "code": "BOAT01"
-        },
-        "Balancing snake": {
-            "title": "Balancing snake beam",
-            "code": "EK01"
-        },
-        "Labirynth game for developing senzomotor skills": {
-            "title": "Sensory-motor development maze game",
-            "code": "EL01"
-        },
-        "Spring rocker airplane": {
-            "title": "Spring rocker airplane",
-            "code": "AP01ARC"
-        },
-        "Airplane": {
-            "title": "Airplane",
-            "code": "AP01"
-        },
-        "Mini castle playground": {
-            "title": "Mini castle playground complex",
-            "code": "TW01"
-        },
-        "Double solid wood swing set with tower-style slide": {
-            "title": "Double solid wood swing set with tower-style slide",
-            "code": "TW02"
-        },
-        "Double solid wood swing set with slide": {
-            "title": "Double solid wood swing set with slide",
-            "code": "TW03"
-        },
-        "Caribbean ship": {
-            "title": "Caribbean ship",
-            "code": "-"
-        },
-        "Rustic styled Double solid wood swing": {
-            "title": "Rustic double solid wood swing",
-            "code": "-"
-        },
-        "Carousel": {
-            "title": "Carousel",
-            "code": "-"
-        },
-        "Rustic Solid Wood Swing with Roof": {
-            "title": "Rustic solid wood swing with roof",
-            "code": "HI02"
+            "code": "GPSS04"
         },
         "Solid wood bell tower": {
             "title": "Solid wood bell tower",
-            "code": "-"
+            "code": "GPSS05"
+        },
+        "solid wood fence": {
+            "title": "Solid wood fence",
+            "code": "GPFS01"
+        },
+        "Info station": {
+            "title": "Information board",
+            "code": "GPFS02"
+        },
+        "bicycle rack": {
+            "title": "Bicycle rack",
+            "code": "GPFS03"
+        },
+        "Garden swing": {
+            "title": "Seesaw",
+            "code": "GPPS01"
+        },
+        "Garden swing 2": {
+            "title": "Seesaw",
+            "code": "GPPS02"
+        },
+        "Garden swing 3": {
+            "title": "Seesaw",
+            "code": "GPPS03"
+        },
+        "Swing": {
+            "title": "Swing",
+            "code": "GPPS04"
+        },
+        "Big swing": {
+            "title": "Large swing",
+            "code": "GPPS07"
+        },
+        "Child swing": {
+            "title": "Children's swing",
+            "code": "GPPS05"
+        },
+        "Hexagonal sandbox": {
+            "title": "Hexagonal sandpit",
+            "code": "GPPS06"
+        },
+        "Balancing snake": {
+            "title": "Balancing snake beam",
+            "code": "GPPS08"
+        },
+        "Hexagonal climbing frame": {
+            "title": "Hexagonal climbing frame",
+            "code": "GPPS09"
+        },
+        "Wooden ship": {
+            "title": "Wooden boat",
+            "code": "GPPS10"
+        },
+        "Labirynth game for developing senzomotor skills": {
+            "title": "Sensory-motor development maze game",
+            "code": "GPPS12"
+        },
+        "Spring rocker airplane": {
+            "title": "Spring rocker airplane",
+            "code": "GPPS11"
+        },
+        "Airplane": {
+            "title": "Airplane",
+            "code": "GPPS13"
+        },
+        "Mini castle playground": {
+            "title": "Mini castle playground complex",
+            "code": "GPLP01"
+        },
+        "Double solid wood swing set with tower-style slide": {
+            "title": "Double solid wood swing set with tower-style slide",
+            "code": "GPLP02"
+        },
+        "Double solid wood swing set with slide": {
+            "title": "Double solid wood swing set with slide",
+            "code": "GPLP03"
+        },
+        "Caribbean ship": {
+            "title": "Caribbean ship",
+            "code": "GPLP04"
+        },
+        "Rustic styled Double solid wood swing": {
+            "title": "Rustic double solid wood swing",
+            "code": "GPLP05"
+        },
+        "Carousel": {
+            "title": "Carousel",
+            "code": "GPLP06"
+        },
+        "Rustic Solid Wood Swing with Roof": {
+            "title": "Rustic solid wood swing with roof",
+            "code": "GPLP07"
         }
     },
     "ui": {

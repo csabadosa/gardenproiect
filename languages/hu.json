@@ -2,67 +2,67 @@
     "benches": {
         "round bench": {
             "title": "Kerek pad",
-            "code": "IC06"
+            "code": "GPBS01"
         },
         "bench": {
             "title": "Pad",
-            "code": "BL01"
+            "code": "GPBS02"
         },
         "bench 2": {
             "title": "Pad",
-            "code": "IC01"
+            "code": "GPBS03"
         },
         "bench 3": {
             "title": "Pad",
-            "code": "ST01"
+            "code": "GPBS04"
         },
         "bench 4": {
             "title": "Pad",
-            "code": "MI01"
+            "code": "GPBS05"
         },
         "bench 5": {
             "title": "Pad",
-            "code": "MI02"
+            "code": "GPBS06"
         },
         "bench 6": {
             "title": "Pad",
-            "code": "IC02"
+            "code": "GPBS07"
         },
         "bench with flowers": {
             "title": "Pad virágládával",
-            "code": "-"
+            "code": "GPBS08"
         },
         "bench with bike rack": {
             "title": "Pad kerékpártartóval",
-            "code": "-"
+            "code": "GPBS09"
         },
         "bench 7": {
             "title": "Pad",
-            "code": "-"
+            "code": "GPBS10"
         },
         "garbage bin": {
             "title": "Szemetes",
-            "code": "-"
+            "code": "GPWB01"
         },
         "garbage bin 2": {
             "title": "Kerek tetős szemetes",
-            "code": "IB01"
+            "code": "GPWB02"
         },
         "garbage bin 3": {
             "title": "Négyzetes tetős szemetes",
-            "code": "-"
+            "code": "GPWB03"
         },
         "garbage bin 4": {
             "title": "Szemetes",
-            "code": "MB01"
+            "code": "GPWB04"
         },
         "flower pot": {
             "title": "Faragott virágláda",
-            "code": "LJ03"
+            "code": "GPPB01"
         },
         "flower pot 2": {
             "title": "Virágláda",
-            "code": "LJ01"
+            "code": "GPPB02"
         },
         "flower pot 3": {
             "title": "Faragott virágláda",
@@ -70,135 +70,135 @@
         },
         "well with a water wheel": {
             "title": "Kerekeskút",
-            "code": "KK01"
+            "code": "GPPB03"
         },
         "sun lounger": {
             "title": "Kerti napozóágy",
-            "code": "SU4"
+            "code": "GPTS01"
         },
         "round table with benches": {
             "title": "Kerek pad és asztal",
-            "code": "IC60"
+            "code": "GPTS02"
         },
         "table": {
             "title": "Asztal",
-            "code": "ICM01"
+            "code": "GPTS03"
         },
         "chess table with two benches": {
             "title": "Sakkasztal két paddal",
-            "code": "SA01"
+            "code": "GPTS04"
         },
         "bus station": {
             "title": "Buszmegálló",
-            "code": "BM02"
+            "code": "GPSS01"
         },
         "bus station 2": {
             "title": "Buszmegálló",
-            "code": "BM01"
+            "code": "GPSS02"
         },
         "bicycle rack": {
             "title": "Kerékpártartó",
-            "code": "BT01"
+            "code": "GPFS03"
         },
         "solid wood fence": {
             "title": "Tömörfa kerítés",
-            "code": "-"
+            "code": "GPFS01"
         },
         "Info station": {
             "title": "Információs tábla",
-            "code": "-"
+            "code": "GPFS02"
         },
         "Secler gate": {
             "title": "Székelykapu",
-            "code": "SZ01"
+            "code": "GPSS03"
         },
         "Octagonal pavilon": {
             "title": "Nyolcszögletű pavilon",
-            "code": "PAC08"
+            "code": "GPSS04"
         },
         "Garden swing": {
             "title": "Mérleghinta",
-            "code": "LP01"
+            "code": "GPPS01"
         },
         "Garden swing 2": {
             "title": "Mérleghinta",
-            "code": "LP02"
+            "code": "GPPS02"
         },
         "Garden swing 3": {
             "title": "Mérleghinta",
-            "code": "-"
+            "code": "GPPS03"
         },
         "Swing": {
             "title": "Hinta",
-            "code": "-"
+            "code": "GPPS04"
         },
         "Big swing": {
             "title": "Nagy hinta",
-            "code": "-"
+            "code": "GPPS07"
         },
         "Child swing": {
             "title": "Gyermekhinta",
-            "code": "-"
+            "code": "GPPS05"
         },
         "Hexagonal sandbox": {
             "title": "Hatszögletű homokozó",
-            "code": "HO06"
+            "code": "GPPS06"
         },
         "Hexagonal climbing frame": {
             "title": "Hatszögletű mászóka",
-            "code": "MF01"
+            "code": "GPPS09"
         },
         "Wooden ship": {
             "title": "Fahajó",
-            "code": "BOAT01"
+            "code": "GPPS10"
         },
         "Balancing snake": {
             "title": "Egyensúlyozó kígyó",
-            "code": "EK01"
+            "code": "GPPS08"
         },
         "Labirynth game for developing senzomotor skills": {
             "title": "Szenzomotoros fejlesztő labirintusjáték",
-            "code": "EL01"
+            "code": "GPPS12"
         },
         "Spring rocker airplane": {
             "title": "Rugós repülő",
-            "code": "AP01ARC"
+            "code": "GPPS11"
         },
         "Airplane": {
             "title": "Repülő",
-            "code": "AP01"
+            "code": "GPPS13"
         },
         "Mini castle playground": {
             "title": "Mini vár típusú játszókomplexum",
-            "code": "TW01"
+            "code": "GPLP01"
         },
         "Double solid wood swing set with tower-style slide": {
             "title": "Dupla tömörfa hintaállvány torony típusú csúszdával",
-            "code": "TW02"
+            "code": "GPLP02"
         },
         "Double solid wood swing set with slide": {
             "title": "Dupla tömörfa hintaállvány csúszdával",
-            "code": "TW03"
+            "code": "GPLP03"
         },
         "Caribbean ship": {
             "title": "Karibi hajó",
-            "code": "-"
+            "code": "GPLP04"
         },
         "Rustic styled Double solid wood swing": {
             "title": "Rusztikus dupla tömörfa hinta",
-            "code": "-"
+            "code": "GPLP05"
         },
         "Carousel": {
             "title": "Körhinta",
-            "code": "-"
+            "code": "GPLP06"
         },
         "Rustic Solid Wood Swing with Roof": {
             "title": "Rusztikus tömörfa hinta tetővel",
-            "code": "HI02"
+            "code": "GPLP07"
         },
         "Solid wood bell tower": {
             "title": "Tömörfa harangláb",
-            "code": "-"
+            "code": "GPSS05"
         }
     },
     "ui": {

@@ -2,67 +2,67 @@
     "benches": {
         "round bench": {
             "title": "bancă rotundă",
-            "code": "IC06"
+            "code": "GPBS01"
         },
         "bench": {
             "title": "Bancă",
-            "code": "BL01"
+            "code": "GPBS02"
         },
         "bench 2": {
             "title": "Bancă",
-            "code": "IC01"
+            "code": "GPBS03"
         },
         "bench 3": {
             "title": "Bancă",
-            "code": "ST01"
+            "code": "GPBS04"
         },
         "bench 4": {
             "title": "Bancă",
-            "code": "MI01"
+            "code": "GPBS05"
         },
         "bench 5": {
             "title": "Bancă",
-            "code": "MI02"
+            "code": "GPBS06"
         },
         "bench 6": {
             "title": "Bancă",
-            "code": "IC02"
+            "code": "GPBS07"
         },
         "bench with flowers": {
             "title": "bancă cu jardeniere",
-            "code": "-"
+            "code": "GPBS08"
         },
         "bench with bike rack": {
             "title": "bancă cu suport pentru biciclete",
-            "code": "-"
+            "code": "GPBS09"
         },
         "bench 7": {
             "title": "Bancă",
-            "code": "-"
+            "code": "GPBS10"
         },
         "garbage bin": {
             "title": "coș de gunoi",
-            "code": "-"
+            "code": "GPWB01"
         },
         "garbage bin 2": {
             "title": "Coș de gunoi cu acoperiș rotund",
-            "code": "IB01"
+            "code": "GPWB02"
         },
         "garbage bin 3": {
             "title": "Coș de gunoi cu acoperiș pătrat",
-            "code": "-"
+            "code": "GPWB03"
         },
         "garbage bin 4": {
             "title": "Coș de gunoi",
-            "code": "MB01"
+            "code": "GPWB04"
         },
         "flower pot": {
             "title": "Jardinieră sculptată",
-            "code": "LJ03"
+            "code": "GPPB01"
         },
         "flower pot 2": {
             "title": "Jardinieră",
-            "code": "LJ01"
+            "code": "GPPB02"
         },
         "flower pot 3": {
             "title": "Jardinieră sculptată",
@@ -70,135 +70,135 @@
         },
         "well with a water wheel": {
             "title": "Fântână roată",
-            "code": "KK01"
+            "code": "GPPB03"
         },
         "sun lounger": {
             "title": "Șezlong grădină",
-            "code": "SU4"
+            "code": "GPTS01"
         },
         "round table with benches": {
             "title": "Bancă și masă rotundă",
-            "code": "IC60"
+            "code": "GPTS02"
         },
         "table": {
             "title": "Masă",
-            "code": "ICM01"
+            "code": "GPTS03"
         },
         "chess table with two benches": {
             "title": "Masă de șah cu două bănci",
-            "code": "SA01"
+            "code": "GPTS04"
         },
         "bus station": {
             "title": "Stație de autobuz",
-            "code": "BM02"
+            "code": "GPSS01"
         },
         "bus station 2": {
             "title": "Stație de autobuz",
-            "code": "BM01"
+            "code": "GPSS02"
         },
         "bicycle rack": {
             "title": "Suport de bicicletă",
-            "code": "BT01"
+            "code": "GPFS03"
         },
         "solid wood fence": {
             "title": "Gard din lemn masiv",
-            "code": "-"
+            "code": "GPFS01"
         },
         "Info station": {
             "title": "Panou informative",
-            "code": "-"
+            "code": "GPFS02"
         },
         "Secler gate": {
             "title": "Poartă Secuiască",
-            "code": "SZ01"
+            "code": "GPSS03"
         },
         "Octagonal pavilon": {
             "title": "Pavilion octogonal",
-            "code": "PAC08"
+            "code": "GPSS04"
         },
         "Garden swing": {
             "title": "Balansoar",
-            "code": "LP01"
+            "code": "GPPS01"
         },
         "Garden swing 2": {
             "title": "Balansoar",
-            "code": "LP02"
+            "code": "GPPS02"
         },
         "Garden swing 3": {
             "title": "Balansoar",
-            "code": "-"
+            "code": "GPPS03"
         },
         "Swing": {
             "title": "Leagăn",
-            "code": "-"
+            "code": "GPPS04"
         },
         "Big swing": {
             "title": "Leagăn mare",
-            "code": "-"
+            "code": "GPPS07"
         },
         "Child swing": {
             "title": "Leagăn copii",
-            "code": "-"
+            "code": "GPPS05"
         },
         "Hexagonal sandbox": {
             "title": "Nisipar hexagonal",
-            "code": "HO06"
+            "code": "GPPS06"
         },
         "Hexagonal climbing frame": {
             "title": "Cățărare hexagonală",
-            "code": "MF01"
+            "code": "GPPS09"
         },
         "Wooden ship": {
             "title": "Vaporas",
-            "code": "BOAT01"
+            "code": "GPPS10"
         },
         "Balancing snake": {
             "title": "Șarpe pentru echilibristica",
-            "code": "EK01"
+            "code": "GPPS08"
         },
         "Labirynth game for developing senzomotor skills": {
             "title": "Joc labirint pentru devoltare senzomotorică",
-            "code": "EL01"
+            "code": "GPPS12"
         },
         "Spring rocker airplane": {
             "title": "Avion cu arc",
-            "code": "AP01ARC"
+            "code": "GPPS11"
         },
         "Airplane": {
             "title": "Avion",
-            "code": "AP01"
+            "code": "GPPS13"
         },
         "Mini castle playground": {
             "title": "Mini complex de joacă tip cetate",
-            "code": "TW01"
+            "code": "GPLP01"
         },
         "Double solid wood swing set with tower-style slide": {
             "title": "Leagăn dublu din lemn masiv cu tobogan tip turn",
-            "code": "TW02"
+            "code": "GPLP02"
         },
         "Double solid wood swing set with slide": {
             "title": "Leagăn dublu din lemn masiv cu tobogan",
-            "code": "TW03"
+            "code": "GPLP03"
         },
         "Caribbean ship": {
             "title": "Vapor Karibi",
-            "code": "-"
+            "code": "GPLP04"
         },
         "Rustic styled Double solid wood swing": {
             "title": "Leagăn dublu din lemn masiv tip rustic",
-            "code": "-"
+            "code": "GPLP05"
         },
         "Carousel": {
             "title": "Carusel",
-            "code": "-"
+            "code": "GPLP06"
         },
         "Rustic Solid Wood Swing with Roof": {
             "title": "Leagăn din lemn masiv tip rustic cu acoperiș",
-            "code": "HI02"
+            "code": "GPLP07"
         },
         "Solid wood bell tower": {
             "title": "Clopotință din lemn masiv",
-            "code": "-"
+            "code": "GPSS05"
         }
     },
     "ui": {
@@ -259,7 +259,7 @@
         "Length 180 · Depth 55 · Height 45 cm": "Lungime 180 · Adâncime 55 · Înălțime 45 cm",
         "Length 260 · Depth 55": "Lungime 260 · Adâncime 55",
         "Length 190 · Depth 55": "Lungime 190 · Adâncime 55",
-        "Height 148 · Width 75": "Înălțime 148 · Lățime 75", 
+        "Height 148 · Width 75": "Înălțime 148 · Lățime 75",
         "Length 360 · Seat height 45 · Back height 82 cm": "Lungime 360 · Înălțime șezut 45 · Înălțime spătar 82 cm",
         "Length 180 · Depth 50 · Height 90 cm": "Lungime 180 · Adâncime 50 · Înălțime 90 cm",
         "Width 50 · Height 122 cm": "Lățime 50 · Înălțime 122 cm",
