@@ -89,23 +89,14 @@ const ADS = [
     // the bottom of the Waste Baskets page (language-independent, so `html`).
     afterId: "waste-basket-2490",
     span: 2,
-    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/flowergarden.jpg" alt="" style="height:88mm" /></div>`,
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/wood_carving.jpeg" alt="" style="height:88mm" /></div>`,
   },
   {
-    // Sits right after the Octagonal Pavilion (the last product of Shelters &
-    // Structures), so it also nudges the following "Fencing & Signage" section
-    // onto page 11. Replace this copy with the real promo when it's ready.
-    afterId: "octagonal-pavilion",
+    // Closing filler after the Rustic Solid Wood Swing with Roof — the LAST
+    // product in the catalog — fills the empty space at the bottom of page 18.
+    afterId: "rustic-swing-roof",
     span: 2,
-    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/garden.jpg" alt="" style="height:82mm" /></div>`,
-  },
-  {
-    // Follows the Solid Wood Bell — the LAST product in the catalog — so this
-    // closing promo sits at the bottom of the final product page (page 18, just
-    // before the Contents page). Swap in the real copy when it's ready.
-    afterId: "solid-wood-bell",
-    span: 2,
-    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/flowers.jpeg" alt="" style="height:82mm" /></div>`,
+    html: `<div class="ad-imgwrap"><img class="ad-img" src="/gallery/wooden_bench_flowers.jpeg" alt="" style="height:88mm" /></div>`,
   },
 ];
 
@@ -353,12 +344,19 @@ const EXPORT_CSS = `
                   position: relative; min-height: 282mm; display: flex;
                   flex-direction: column; align-items: center; justify-content: flex-start; }
   .closing-page .closing-contact { position: absolute; left: 0; right: 0; bottom: 14mm;
-                  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; padding: 0 16mm; }
-  .closing-page .closing-mark { position: absolute; top: 50%; left: 50%;
-                  transform: translate(-50%, -50%); height: 90mm; width: auto; display: block; }
-  /* On the CLOSING page only, mirror the "G" of the wordmark so it faces the
-     other way (the cover keeps it normal — this rule is scoped to .closing-page). */
-  .closing-page .cb-title .cb-g { display: inline-block; transform: scaleX(-1); }
+                  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+                  align-items: center; padding: 0 16mm; }
+  /* VAT note sitting beside the contact chips on the closing page. */
+  .closing-page .closing-vat { display: inline-flex; align-items: center;
+                  font-weight: 700; font-size: 13px; color: var(--green-deep);
+                  background: rgba(159,174,138,0.22); border: 1px solid rgba(47,107,59,0.22);
+                  padding: 8px 16px; border-radius: 999px; }
+  /* Closing image sized AND placed to match the cover photo exactly: it flows in
+     normal order right under the white banner (no vertical centering), full-bleed
+     page width with the same 16/10 frame (see .hero-media .frame on the cover) —
+     so it starts flush where the banner ends, just like page 1. */
+  .closing-page .closing-mark { width: 100%; height: auto; aspect-ratio: 16 / 10;
+                  max-height: 150mm; object-fit: cover; display: block; }
 `;
 
 // Garden Proiect brand — full logo lockup (tree + wordmark), transparent PNG
@@ -561,7 +559,7 @@ async function buildCatalogDom(page, banner, labels, ads) {
       closing.className = "closing-page";
       closing.appendChild(makeBanner());
       const mark = document.createElement("img");
-      mark.src = "/closing-mark.png";
+      mark.src = "/gallery/children.jpeg";
       mark.alt = "";
       mark.className = "closing-mark";
       closing.appendChild(mark);
@@ -569,6 +567,16 @@ async function buildCatalogDom(page, banner, labels, ads) {
       if (heroContact) {
         const contact = heroContact.cloneNode(true);
         contact.classList.add("closing-contact");
+        // VAT note beside the phone / website / Facebook chips. Read the
+        // already-localized string from the app's (hidden) .terms-vat element so
+        // each language's closing page gets the right wording automatically.
+        const vatText = document.querySelector(".terms-vat")?.textContent?.trim();
+        if (vatText) {
+          const vat = document.createElement("span");
+          vat.className = "closing-vat";
+          vat.textContent = vatText;
+          contact.appendChild(vat);
+        }
         closing.appendChild(contact);
       }
       document.body.appendChild(closing);
@@ -646,7 +654,7 @@ const footerHtml = (withNumber) => `
     ${MOUND_SVG}
     ${withNumber
       ? `<span class="pageNumber" style="position:absolute; left:0; right:0; bottom:2mm; text-align:center;
-                 font-size:9px; font-weight:700; color:#ffffff;"></span>`
+                 font-size:12px; font-weight:700; color:#ffffff;"></span>`
       : ``}
   </div>`;
 const FOOTER_NUM = footerHtml(true);
