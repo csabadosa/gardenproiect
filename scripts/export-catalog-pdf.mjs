@@ -405,10 +405,21 @@ async function waitForImages(page) {
     await Promise.all(
       imgs.map((img) => {
         if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+        // A still-deferred lazy image makes no network request while off-screen,
+        // so neither `load` nor `error` ever fires and the wait would hang. Force
+        // it to load eagerly and re-poke the src so the request actually starts.
+        if (img.loading === "lazy") {
+          img.loading = "eager";
+          if (img.getAttribute("src")) img.src = img.src;
+        }
+        // Race each pending image against a timeout so one stuck/missing image
+        // can never freeze the whole export — treat a slow image like an error
+        // and move on (it renders as blank, same as a load failure).
         return new Promise((res) => {
           const done = () => res();
           img.addEventListener("load", done, { once: true });
           img.addEventListener("error", done, { once: true });
+          setTimeout(done, 15000);
         });
       })
     );
@@ -812,8 +823,16 @@ async function exportLang(browser, gs, lang) {
   console.log(`→ Loading ${BASE_URL} (lang=${lang}) …`);
   await page.goto(BASE_URL, { waitUntil: "networkidle", timeout: 120000 });
 
-  // Confirm the language mounted (non-fatal).
-  const langOk = await page.locator(".section-head h2", { hasText: L.confirm }).count();
+  // Confirm the language mounted (non-fatal). Use waitFor (which polls) rather
+  // than an instant .count() snapshot: on slower machines React may not have
+  // finished rendering the product sections the moment `networkidle` fires, so
+  // a snapshot spuriously reports 0 even though the app mounted correctly.
+  const langOk = await page
+    .locator(".section-head h2", { hasText: L.confirm })
+    .first()
+    .waitFor({ state: "attached", timeout: 15000 })
+    .then(() => true)
+    .catch(() => false);
   if (!langOk) console.warn(`⚠  Could not confirm ${lang} section title (“${L.confirm}”) — continuing anyway.`);
   else console.log(`✓ ${lang} confirmed (${L.confirm}).`);
 
