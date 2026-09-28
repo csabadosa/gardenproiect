@@ -603,7 +603,7 @@ async function buildCatalogDom(page, banner, labels, ads) {
       closing.className = "closing-page";
       closing.appendChild(makeBanner());
       const mark = document.createElement("img");
-      mark.src = "/gallery/children.jpeg";
+      mark.src = "/MikoVar/IMG_1292.jpg";
       mark.alt = "";
       mark.className = "closing-mark";
       closing.appendChild(mark);
