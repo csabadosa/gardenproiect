@@ -39,6 +39,39 @@ import { existsSync, statSync, renameSync, rmSync } from "node:fs";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, "..");
 
+// ---- Cross-platform external-binary discovery ------------------------------
+// This script shells out to poppler (`pdftotext`, `pdfinfo`, `pdfunite`) and
+// Ghostscript. Those binaries are found on PATH differently per-OS, and
+// Ghostscript in particular is NOT called `gs` on Windows — it ships as
+// `gswin64c` / `gswin32c`. Resolve everything here so the rest of the script
+// can stay platform-agnostic.
+const IS_WIN = process.platform === "win32";
+
+// Return the absolute path of the first candidate name found on PATH, or null.
+// Uses `where` on Windows and `which` on macOS/Linux (both exit non-zero when
+// the name is missing, which we swallow). Never throws.
+function findBinary(...names) {
+  const locator = IS_WIN ? "where" : "which";
+  for (const name of names) {
+    try {
+      const out = execFileSync(locator, [name], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
+      const first = out.split(/\r?\n/).map((s) => s.trim()).filter(Boolean)[0];
+      if (first) return first;
+    } catch {
+      /* not found via this name — try the next */
+    }
+  }
+  return null;
+}
+
+// Resolved binary paths, populated by resolveBinaries() in main(). Ghostscript
+// is optional (compression is skipped if absent); the three poppler tools are
+// required and main() aborts with an install hint when any is missing.
+let GS = null;
+let PDFINFO = "pdfinfo";
+let PDFTOTEXT = "pdftotext";
+let PDFUNITE = "pdfunite";
+
 // Language labels. Product names, descriptions, codes, section titles and the
 // cover text all render from the app in the chosen language automatically; only
 // the injected TOC labels + the mount-check section title are localized here.
@@ -588,7 +621,7 @@ async function buildCatalogDom(page, banner, labels, ads) {
 
 function pdfPageText(file, pageNum) {
   try {
-    return execFileSync("pdftotext", ["-f", String(pageNum), "-l", String(pageNum), "-layout", file, "-"], {
+    return execFileSync(PDFTOTEXT, ["-f", String(pageNum), "-l", String(pageNum), "-layout", file, "-"], {
       encoding: "utf8",
     });
   } catch {
@@ -597,7 +630,7 @@ function pdfPageText(file, pageNum) {
 }
 
 function pageCount(file) {
-  const info = execFileSync("pdfinfo", [file], { encoding: "utf8" });
+  const info = execFileSync(PDFINFO, [file], { encoding: "utf8" });
   const m = info.match(/Pages:\s+(\d+)/);
   return m ? parseInt(m[1], 10) : 0;
 }
@@ -694,7 +727,7 @@ async function renderPdfFinal(page, total, outPath) {
   const parts = ["cover", "inner", "back"].map((n) => outPath.replace(/\.pdf$/, `.${n}.pdf`));
   await Promise.all([writeFile(parts[0], cover), writeFile(parts[1], inner), writeFile(parts[2], back)]);
   try {
-    execFileSync("pdfunite", [...parts, outPath], { stdio: "ignore" });
+    execFileSync(PDFUNITE, [...parts, outPath], { stdio: "ignore" });
   } catch (err) {
     console.warn(`⚠  pdfunite failed (${err.message}) — falling back to numbered covers.`);
     await writeFile(outPath, await renderPdf(page));
@@ -831,6 +864,34 @@ async function exportLang(browser, gs, lang) {
   if (existsSync(RAW)) rmSync(RAW, { force: true });
 }
 
+// Resolve every external tool up-front. The three poppler tools are required
+// (they drive the two-pass TOC page-number scan and the cover stitching), so a
+// missing one aborts with a per-OS install hint instead of a cryptic ENOENT
+// crash deep inside pass 1. Ghostscript is optional — compression is simply
+// skipped when it is absent.
+function resolveBinaries() {
+  const pdfinfo = findBinary("pdfinfo");
+  const pdftotext = findBinary("pdftotext");
+  const pdfunite = findBinary("pdfunite");
+  // Ghostscript's console binary is `gswin64c`/`gswin32c` on Windows, `gs`
+  // elsewhere. Include `gs` in the Windows list too (some shims provide it).
+  GS = IS_WIN ? findBinary("gswin64c", "gswin32c", "gs") : findBinary("gs");
+
+  const missing = [];
+  if (pdfinfo) PDFINFO = pdfinfo; else missing.push("pdfinfo");
+  if (pdftotext) PDFTOTEXT = pdftotext; else missing.push("pdftotext");
+  if (pdfunite) PDFUNITE = pdfunite; else missing.push("pdfunite");
+  if (missing.length) {
+    const install = IS_WIN
+      ? "Install poppler and add it to PATH — e.g. `choco install poppler`, `scoop install poppler`, or download from https://github.com/oschwartz10612/poppler-windows/releases and add its `bin` folder to PATH."
+      : process.platform === "darwin"
+        ? "Install poppler — e.g. `brew install poppler`."
+        : "Install poppler — e.g. `apt install poppler-utils` (Debian/Ubuntu) or `dnf install poppler-utils` (Fedora).";
+    console.error(`Missing required tool(s): ${missing.join(", ")}.\n${install}`);
+    process.exit(1);
+  }
+}
+
 async function main() {
   if (!LANGS.length) {
     console.error(`No valid languages selected. CATALOG_LANG must be one or more of: ${Object.keys(LABELS).join(", ")}`);
@@ -838,14 +899,11 @@ async function main() {
   }
   console.log(`Exporting ${LANGS.length} language(s): ${LANGS.map((l) => l.toUpperCase()).join(", ")}`);
 
-  let gs = null;
-  try {
-    gs = execFileSync("which", ["gs"], { encoding: "utf8" }).trim();
-  } catch {}
+  resolveBinaries();
 
   const browser = await chromium.launch();
   try {
-    for (const lang of LANGS) await exportLang(browser, gs, lang);
+    for (const lang of LANGS) await exportLang(browser, GS, lang);
   } finally {
     await browser.close();
   }
